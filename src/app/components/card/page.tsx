@@ -44,37 +44,6 @@ function CardPropsTable() {
   );
 }
 
-function BadgePropsTable() {
-  const props = [
-    { name: "variant", type: '"default" | "success" | "warning" | "destructive" | "outline"', description: "Color treatment" },
-    { name: "size", type: '"sm" | "md"', description: "Badge size" },
-    { name: "asChild", type: "boolean", description: "Render as child element via Radix Slot" },
-  ];
-
-  return (
-    <div className="border-2 overflow-x-auto">
-      <table className="w-full font-sans text-sm">
-        <thead>
-          <tr className="border-b-2 bg-muted">
-            <th className="text-left p-3 font-head">Prop</th>
-            <th className="text-left p-3 font-head">Type</th>
-            <th className="text-left p-3 font-head">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          {props.map((prop) => (
-            <tr key={prop.name} className="border-b last:border-b-0">
-              <td className="p-3 font-mono text-xs">{prop.name}</td>
-              <td className="p-3 font-mono text-xs text-muted-foreground">{prop.type}</td>
-              <td className="p-3">{prop.description}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
 export default function CardPage() {
   return (
     <div className="min-h-screen">
@@ -87,10 +56,10 @@ export default function CardPage() {
           >
             &larr; All Components
           </Link>
-          <h1 className="font-head text-4xl mb-2">Card &amp; Badge</h1>
+          <h1 className="font-head text-4xl mb-2">Card</h1>
           <p className="font-sans text-lg text-muted-foreground max-w-xl">
-            Generic container with header, body, and footer. Paired with Badge
-            for status labels.
+            Generic container with header, body, and footer. Multiple visual
+            treatments including interactive.
           </p>
         </div>
       </header>
@@ -150,23 +119,6 @@ export default function CardPage() {
           </div>
         </section>
 
-        {/* ─── Badge Variants ─── */}
-        <section>
-          <h2 className="font-head text-2xl mb-4">Badge Variants</h2>
-          <div className="flex flex-wrap gap-3 items-center">
-            <Badge>Default</Badge>
-            <Badge variant="success">Success</Badge>
-            <Badge variant="warning">Warning</Badge>
-            <Badge variant="destructive">Destructive</Badge>
-            <Badge variant="outline">Outline</Badge>
-          </div>
-          <h3 className="font-head text-lg mt-6 mb-3">Sizes</h3>
-          <div className="flex flex-wrap gap-3 items-center">
-            <Badge size="sm">Small</Badge>
-            <Badge size="md">Medium</Badge>
-          </div>
-        </section>
-
         {/* ─── Card Props ─── */}
         <section>
           <h2 className="font-head text-2xl mb-4">Card Props</h2>
@@ -177,12 +129,6 @@ export default function CardPage() {
             <code className="font-mono">Card.Footer</code> each accept{" "}
             <code className="font-mono">className</code> and standard div props.
           </p>
-        </section>
-
-        {/* ─── Badge Props ─── */}
-        <section>
-          <h2 className="font-head text-2xl mb-4">Badge Props</h2>
-          <BadgePropsTable />
         </section>
 
         {/* ─── Usage ─── */}

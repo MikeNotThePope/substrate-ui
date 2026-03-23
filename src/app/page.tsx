@@ -16,7 +16,7 @@ const components = [
   {
     name: "Badge",
     description: "Small status label with color variants and retro styling.",
-    href: "/components/card",
+    href: "/components/badge",
     status: "Ready" as const,
   },
 ];
