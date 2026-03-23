@@ -1,5 +1,9 @@
 export { Button, buttonVariants } from "./Button";
 export type { IButtonProps } from "./Button";
+export { Badge, badgeVariants } from "./Badge";
+export type { IBadgeProps } from "./Badge";
+export { Card, cardVariants } from "./Card";
+export type { ICardProps } from "./Card";
 export { Menu } from "./Menu";
 export { Drawer } from "./Drawer";
 export { Avatar } from "./Avatar";

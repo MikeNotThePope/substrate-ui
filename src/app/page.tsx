@@ -7,6 +7,18 @@ const components = [
     href: "/components/navbar",
     status: "Ready" as const,
   },
+  {
+    name: "Card",
+    description: "Generic container with header, body, footer. Multiple visual treatments including interactive.",
+    href: "/components/card",
+    status: "Ready" as const,
+  },
+  {
+    name: "Badge",
+    description: "Small status label with color variants and retro styling.",
+    href: "/components/card",
+    status: "Ready" as const,
+  },
 ];
 
 function StatusBadge({ status }: { status: "Ready" | "In Progress" | "Planned" }) {
