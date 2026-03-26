@@ -20,3 +20,4 @@ export type { IRadioGroupItemProps } from "./RadioGroup";
 export { Select } from "./Select";
 export { Switch } from "./Switch";
 export { Slider } from "./Slider";
+export { Text } from "./Text";

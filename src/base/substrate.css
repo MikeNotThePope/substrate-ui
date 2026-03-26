@@ -16,6 +16,7 @@
 @theme inline {
   --font-head: var(--font-head);
   --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
   --radius: var(--radius);
 
   /* Retro shadow scale — hard pixel offsets, no blur */

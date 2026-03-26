@@ -43,6 +43,12 @@ const groups: ComponentGroup[] = [
         status: "Ready",
       },
       {
+        name: "Text",
+        description: "Typography primitives for headings, body, small text, and code.",
+        href: "/components/text",
+        status: "Ready",
+      },
+      {
         name: "Menu",
         description: "Dropdown menu for contextual actions. Built on Radix.",
         href: "/components/menu",
