@@ -90,19 +90,19 @@ export default function TwoColumnLayoutPage() {
                       <div className="p-4 border-2 bg-muted">
                         <div className="flex justify-between items-center">
                           <span className="font-head text-sm">Criteria A</span>
-                          <span className="font-head text-sm text-primary">4 / 5</span>
+                          <span className="font-head text-sm bg-primary text-primary-foreground px-2 py-0.5 border-2">4 / 5</span>
                         </div>
                       </div>
                       <div className="p-4 border-2 bg-muted">
                         <div className="flex justify-between items-center">
                           <span className="font-head text-sm">Criteria B</span>
-                          <span className="font-head text-sm text-primary">5 / 5</span>
+                          <span className="font-head text-sm bg-primary text-primary-foreground px-2 py-0.5 border-2">5 / 5</span>
                         </div>
                       </div>
                       <div className="p-4 border-2 bg-muted">
                         <div className="flex justify-between items-center">
                           <span className="font-head text-sm">Criteria C</span>
-                          <span className="font-head text-sm text-primary">3 / 5</span>
+                          <span className="font-head text-sm bg-primary text-primary-foreground px-2 py-0.5 border-2">3 / 5</span>
                         </div>
                       </div>
                     </div>

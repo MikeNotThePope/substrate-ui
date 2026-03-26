@@ -128,7 +128,7 @@ function TabsMore({ children, className, label = "More" }: TabsMoreProps) {
         <DropdownMenu.Content
           side="bottom"
           align="start"
-          className="bg-white border-2 shadow-md absolute top-2 min-w-20 z-50"
+          className="bg-card border-2 shadow-md absolute top-2 min-w-20 z-50"
         >
           {children}
         </DropdownMenu.Content>
@@ -152,7 +152,7 @@ const TabsMoreItem = React.forwardRef<HTMLDivElement, TabsMoreItemProps>(
       <DropdownMenu.Item
         ref={ref}
         className={cn(
-          "relative text-black flex cursor-default select-none items-center px-3 py-1.5 text-sm font-head outline-hidden transition-colors hover:bg-primary focus:bg-primary",
+          "relative text-card-foreground flex cursor-default select-none items-center px-3 py-1.5 text-sm font-head outline-hidden transition-colors hover:bg-primary focus:bg-primary",
           className,
         )}
         onSelect={() => setValue(value)}
