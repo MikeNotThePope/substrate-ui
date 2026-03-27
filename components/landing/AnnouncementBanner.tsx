@@ -35,10 +35,10 @@ export function AnnouncementBanner({
         {dismissible && (
           <button
             onClick={() => setVisible(false)}
-            className="shrink-0 p-0.5 hover:bg-foreground/10 transition-colors cursor-pointer"
+            className="shrink-0 p-2 min-w-[44px] min-h-[44px] inline-flex items-center justify-center hover:bg-foreground/10 transition-colors cursor-pointer"
             aria-label="Dismiss"
           >
-            <X className="h-3.5 w-3.5" />
+            <X className="h-4 w-4" />
           </button>
         )}
       </div>

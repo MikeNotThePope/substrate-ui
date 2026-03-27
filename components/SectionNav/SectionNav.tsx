@@ -45,8 +45,9 @@ export function SectionNav({ items, className }: ISectionNavProps) {
 
   return (
     <nav
+      aria-label="Section navigation"
       className={cn(
-        "sticky top-0 z-10 bg-background text-foreground border-b-[4px] border-black",
+        "sticky top-0 z-10 bg-background text-foreground border-b-[4px] border-border",
         className,
       )}
     >

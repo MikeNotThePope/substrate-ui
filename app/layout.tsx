@@ -26,8 +26,22 @@ const monoFont = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Substrate UI",
-  description: "A neobrutalist component library for React",
+  title: "Substrate UI — Neobrutalist React Component Library",
+  description:
+    "A neobrutalist React component library with 80+ components built on Radix UI primitives and styled with Tailwind CSS v4. Hard shadows, bold borders, and full accessibility.",
+  openGraph: {
+    title: "Substrate UI — Neobrutalist React Component Library",
+    description:
+      "80+ accessible React components with hard shadows, bold borders, and sharp corners. Built on Radix UI + Tailwind CSS v4.",
+    siteName: "Substrate UI",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Substrate UI — Neobrutalist React Component Library",
+    description:
+      "80+ accessible React components with hard shadows, bold borders, and sharp corners. Built on Radix UI + Tailwind CSS v4.",
+  },
 };
 
 export default function RootLayout({

@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useMemo } from "react";
 import NextLink from "next/link";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
@@ -12,6 +15,20 @@ import { Section } from "@/components/landing/Section";
 import { CTABanner } from "@/components/landing/CTABanner";
 import { Footer } from "@/components/landing/Footer";
 import { AnnouncementBanner } from "@/components/landing/AnnouncementBanner";
+import { Drawer } from "@/components/ui/Drawer";
+import {
+  Cog,
+  Paintbrush,
+  Palette,
+  Moon,
+  Code,
+  Zap,
+  AlignJustify,
+  X,
+  Search,
+  Copy,
+  Check,
+} from "lucide-react";
 
 interface ComponentEntry {
   name: string;
@@ -724,10 +741,96 @@ const demoGroup: DemoGroup = {
   ],
 };
 
+// Featured components to highlight in the marketing section
+const featuredComponents: ComponentEntry[] = [
+  {
+    name: "Button",
+    description: "Clickable action with size and variant options.",
+    href: "/components/button",
+    status: "Ready",
+  },
+  {
+    name: "Dialog",
+    description: "Modal dialog with header, body, footer, and overlay.",
+    href: "/components/dialog",
+    status: "Ready",
+    builtOn: "Radix Dialog",
+  },
+  {
+    name: "DataTable",
+    description: "Feature-rich table with sorting, filtering, and pagination.",
+    href: "/components/data-table",
+    status: "Ready",
+    builtOn: "TanStack Table",
+  },
+  {
+    name: "Command",
+    description: "Searchable command palette for actions and navigation.",
+    href: "/components/command",
+    status: "Ready",
+    builtOn: "cmdk",
+  },
+  {
+    name: "NavBar",
+    description: "Responsive navigation with auth states and mobile drawer.",
+    href: "/components/navbar",
+    status: "Ready",
+  },
+  {
+    name: "Calendar",
+    description: "Date picker with single, multiple, and range selection.",
+    href: "/components/calendar",
+    status: "Ready",
+    builtOn: "react-day-picker",
+  },
+];
+
+// Featured demos to highlight
+const featuredDemos: ComponentEntry[] = [
+  {
+    name: "Landing Page",
+    description:
+      "Full SaaS landing page with hero, features, pricing, testimonials, FAQ, and more.",
+    href: "/demos/landing",
+    status: "Ready",
+  },
+  {
+    name: "Unified Sign In",
+    description:
+      "Tabbed sign-in with password and magic link methods in one page.",
+    href: "/demos/unified-sign-in",
+    status: "Ready",
+  },
+];
+
 const sectionNavItems = [
   ...componentGroups.map((g) => ({ label: g.title, id: g.id })),
   { label: demoGroup.title, id: demoGroup.id },
 ];
+
+function CopyButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <button
+      onClick={handleCopy}
+      className="shrink-0 p-1.5 hover:bg-foreground/10 transition-colors cursor-pointer"
+      aria-label={copied ? "Copied" : "Copy to clipboard"}
+    >
+      {copied ? (
+        <Check className="h-4 w-4 text-green-600" />
+      ) : (
+        <Copy className="h-4 w-4 text-muted-foreground" />
+      )}
+    </button>
+  );
+}
 
 function ComponentCard({ component }: { component: ComponentEntry }) {
   return (
@@ -759,9 +862,51 @@ function ComponentCard({ component }: { component: ComponentEntry }) {
 }
 
 export default function Home() {
+  const [searchQuery, setSearchQuery] = useState("");
+
   const totalComponents =
     componentGroups.reduce((sum, g) => sum + g.components.length, 0) +
     demoGroup.subGroups.reduce((sum, sg) => sum + sg.demos.length, 0);
+
+  const filteredGroups = useMemo(() => {
+    if (!searchQuery.trim()) return componentGroups;
+    const q = searchQuery.toLowerCase();
+    return componentGroups
+      .map((group) => ({
+        ...group,
+        components: group.components.filter(
+          (c) =>
+            c.name.toLowerCase().includes(q) ||
+            c.description.toLowerCase().includes(q),
+        ),
+      }))
+      .filter((group) => group.components.length > 0);
+  }, [searchQuery]);
+
+  const filteredDemoGroup = useMemo(() => {
+    if (!searchQuery.trim()) return demoGroup;
+    const q = searchQuery.toLowerCase();
+    const filteredSubGroups = demoGroup.subGroups
+      .map((sg) => ({
+        ...sg,
+        demos: sg.demos.filter(
+          (d) =>
+            d.name.toLowerCase().includes(q) ||
+            d.description.toLowerCase().includes(q),
+        ),
+      }))
+      .filter((sg) => sg.demos.length > 0);
+    return { ...demoGroup, subGroups: filteredSubGroups };
+  }, [searchQuery]);
+
+  const hasResults =
+    filteredGroups.length > 0 || filteredDemoGroup.subGroups.length > 0;
+
+  const navLinks = [
+    { label: "Components", href: "#primitives" },
+    { label: "Demos", href: "#demos" },
+    { label: "Tokens", href: "/tokens" },
+  ];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -781,39 +926,30 @@ export default function Home() {
       {/* ── Navigation Bar ── */}
       <nav
         aria-label="Main navigation"
-        className="bg-background text-foreground border-b-[4px] border-black"
+        className="bg-background text-foreground border-b-[4px] border-border"
       >
         <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
           <NextLink href="/" className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-primary flex items-center justify-center border-2 border-black">
+            <div className="w-8 h-8 bg-primary flex items-center justify-center border-2 border-border">
               <span className="font-head text-primary-foreground text-sm">S</span>
             </div>
             <span className="font-head text-lg">Substrate UI</span>
           </NextLink>
           <div className="flex items-center gap-3">
-            <NextLink
-              href="#primitives"
-              className="hidden sm:inline-block font-head text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Components
-            </NextLink>
-            <NextLink
-              href="#demos"
-              className="hidden sm:inline-block font-head text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Demos
-            </NextLink>
-            <NextLink
-              href="/tokens"
-              className="hidden sm:inline-block font-head text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Tokens
-            </NextLink>
+            {navLinks.map((link) => (
+              <NextLink
+                key={link.label}
+                href={link.href}
+                className="hidden sm:inline-block font-head text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {link.label}
+              </NextLink>
+            ))}
             <a
               href="https://github.com/MikeNotThePope/substrate-ui"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-background text-foreground border-2 border-black px-3 py-1 font-head text-sm shadow-sm hover:shadow-none transition-shadow"
+              className="inline-flex items-center gap-2 bg-background text-foreground border-2 border-border px-3 py-1 font-head text-sm shadow-sm hover:shadow-none transition-shadow"
               aria-label="View on GitHub"
             >
               <svg
@@ -827,6 +963,55 @@ export default function Home() {
               <span className="hidden sm:inline">GitHub</span>
             </a>
             <ThemeToggle variant="outline" />
+
+            {/* Mobile menu button */}
+            <Drawer direction="right">
+              <Drawer.Trigger asChild>
+                <button
+                  className="sm:hidden inline-flex items-center justify-center w-9 h-9 border-2 border-border bg-background hover:bg-muted transition-colors cursor-pointer"
+                  aria-label="Open menu"
+                >
+                  <AlignJustify className="h-4 w-4" />
+                </button>
+              </Drawer.Trigger>
+              <Drawer.Content>
+                <Drawer.Header className="border-b-2">
+                  <div className="flex items-center justify-between">
+                    <Drawer.Title>Menu</Drawer.Title>
+                    <Drawer.Close asChild>
+                      <button
+                        className="inline-flex items-center justify-center w-9 h-9 border-2 border-border bg-background hover:bg-muted transition-colors cursor-pointer"
+                        aria-label="Close menu"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                    </Drawer.Close>
+                  </div>
+                </Drawer.Header>
+                <div className="flex flex-col p-4 gap-1">
+                  {navLinks.map((link) => (
+                    <Drawer.Close key={link.label} asChild>
+                      <NextLink
+                        href={link.href}
+                        className="font-head text-base py-3 px-4 hover:bg-muted transition-colors"
+                      >
+                        {link.label}
+                      </NextLink>
+                    </Drawer.Close>
+                  ))}
+                  <Drawer.Close asChild>
+                    <a
+                      href="https://github.com/MikeNotThePope/substrate-ui"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-head text-base py-3 px-4 hover:bg-muted transition-colors"
+                    >
+                      GitHub
+                    </a>
+                  </Drawer.Close>
+                </div>
+              </Drawer.Content>
+            </Drawer>
           </div>
         </div>
       </nav>
@@ -834,21 +1019,21 @@ export default function Home() {
       {/* ── Hero ── */}
       <Hero
         badge={
-          <Badge variant="outline" className="rotate-[-1deg]">
-            Open Source
+          <Badge variant="default" className="rotate-[-1deg]">
+            {totalComponents}+ Components
           </Badge>
         }
         title={
           <>
-            Bold components.{" "}
-            <span className="text-primary">Zero compromises.</span>
+            Neobrutalist UI.{" "}
+            <span className="text-primary">Unapologetically bold.</span>
           </>
         }
-        subtitle={`A neobrutalist React component library with ${totalComponents} components built on Radix UI primitives and styled with Tailwind CSS v4. Accessible, themeable, and ready to ship.`}
+        subtitle="Hard shadows, bold borders, and sharp corners — built on Radix UI primitives with Tailwind CSS v4. Accessible, themeable, and ready to ship."
         actions={
           <>
             <Button size="lg" asChild>
-              <a href="#quickstart">Get Started</a>
+              <a href="#quickstart">Install Now</a>
             </Button>
             <Button variant="outline" size="lg" asChild>
               <a href="#primitives">Browse Components</a>
@@ -856,10 +1041,13 @@ export default function Home() {
           </>
         }
       >
-        {/* Install snippet */}
-        <div className="mt-2 font-mono text-sm bg-card text-card-foreground border-2 border-border px-6 py-3 shadow-md overflow-x-auto whitespace-nowrap">
-          <span className="text-muted-foreground select-none">$ </span>
-          npm install @mikenotthepope/substrate-ui
+        {/* Install snippet with copy button */}
+        <div className="mt-2 font-mono text-sm bg-card text-card-foreground border-2 border-border px-6 py-3 shadow-md flex items-center gap-3">
+          <code className="overflow-x-auto whitespace-nowrap flex-1">
+            <span className="text-muted-foreground select-none">$ </span>
+            npm install @mikenotthepope/substrate-ui
+          </code>
+          <CopyButton text="npm install @mikenotthepope/substrate-ui" />
         </div>
       </Hero>
 
@@ -879,29 +1067,38 @@ export default function Home() {
         title="Get started in seconds"
         subtitle="Install the package, import the styles, and use any component."
       >
-        <div className="grid gap-6 sm:grid-cols-3">
-          <div className="border-2 p-6 bg-card shadow-md">
-            <div className="font-head text-2xl text-primary mb-2">1</div>
+        <ol className="grid gap-6 sm:grid-cols-3 list-none p-0 m-0">
+          <li className="border-2 p-6 bg-card shadow-md">
+            <div className="font-head text-2xl text-primary mb-2" aria-hidden="true">1</div>
             <h3 className="font-head text-lg mb-3">Install</h3>
-            <code className="font-mono text-sm bg-background border-2 border-border px-3 py-2 block overflow-x-auto whitespace-nowrap">
-              npm i @mikenotthepope/substrate-ui
-            </code>
-          </div>
-          <div className="border-2 p-6 bg-card shadow-md">
-            <div className="font-head text-2xl text-primary mb-2">2</div>
+            <div className="flex items-center gap-2 bg-background border-2 border-border px-3 py-2">
+              <code className="font-mono text-sm overflow-x-auto whitespace-nowrap flex-1">
+                npm i @mikenotthepope/substrate-ui
+              </code>
+              <CopyButton text="npm i @mikenotthepope/substrate-ui" />
+            </div>
+          </li>
+          <li className="border-2 p-6 bg-card shadow-md">
+            <div className="font-head text-2xl text-primary mb-2" aria-hidden="true">2</div>
             <h3 className="font-head text-lg mb-3">Import styles</h3>
-            <code className="font-mono text-sm bg-background border-2 border-border px-3 py-2 block overflow-x-auto whitespace-nowrap">
-              import &quot;substrate-ui/styles&quot;
-            </code>
-          </div>
-          <div className="border-2 p-6 bg-card shadow-md">
-            <div className="font-head text-2xl text-primary mb-2">3</div>
+            <div className="flex items-center gap-2 bg-background border-2 border-border px-3 py-2">
+              <code className="font-mono text-sm overflow-x-auto whitespace-nowrap flex-1">
+                import &quot;@mikenotthepope/substrate-ui/styles&quot;
+              </code>
+              <CopyButton text='import "@mikenotthepope/substrate-ui/styles"' />
+            </div>
+          </li>
+          <li className="border-2 p-6 bg-card shadow-md">
+            <div className="font-head text-2xl text-primary mb-2" aria-hidden="true">3</div>
             <h3 className="font-head text-lg mb-3">Use components</h3>
-            <code className="font-mono text-sm bg-background border-2 border-border px-3 py-2 block overflow-x-auto whitespace-nowrap">
-              {`import { Button } from "substrate-ui"`}
-            </code>
-          </div>
-        </div>
+            <div className="flex items-center gap-2 bg-background border-2 border-border px-3 py-2">
+              <code className="font-mono text-sm overflow-x-auto whitespace-nowrap flex-1">
+                {`import { Button } from "@mikenotthepope/substrate-ui"`}
+              </code>
+              <CopyButton text='import { Button } from "@mikenotthepope/substrate-ui"' />
+            </div>
+          </li>
+        </ol>
       </Section>
 
       {/* ── Features ── */}
@@ -914,37 +1111,37 @@ export default function Home() {
           columns={3}
           features={[
             {
-              icon: <span className="text-lg">&#9881;</span>,
+              icon: <Cog className="h-5 w-5" />,
               title: "Radix Primitives",
               description:
                 "Every interactive component wraps a Radix UI primitive for keyboard navigation, screen reader support, and WAI-ARIA compliance out of the box.",
             },
             {
-              icon: <span className="text-lg">&#9998;</span>,
+              icon: <Paintbrush className="h-5 w-5" />,
               title: "Neobrutalist Design",
               description:
                 "Hard shadows, bold borders, and sharp corners create a distinctive visual identity that stands out. Rounded corners available via opt-in.",
             },
             {
-              icon: <span className="text-lg">&#9883;</span>,
+              icon: <Palette className="h-5 w-5" />,
               title: "Tailwind CSS v4",
               description:
                 "Styled with CSS custom properties and Tailwind v4. No Tailwind config needed — just import one CSS file and go.",
             },
             {
-              icon: <span className="text-lg">&#9733;</span>,
+              icon: <Moon className="h-5 w-5" />,
               title: "Dark Mode",
               description:
                 "Full light and dark theme support via CSS custom properties. Seamless switching with no flash of unstyled content.",
             },
             {
-              icon: <span className="text-lg">&#128736;</span>,
+              icon: <Code className="h-5 w-5" />,
               title: "TypeScript First",
               description:
                 "Every component is fully typed with strict TypeScript. Autocomplete for all props, variants, and event handlers.",
             },
             {
-              icon: <span className="text-lg">&#9889;</span>,
+              icon: <Zap className="h-5 w-5" />,
               title: "Copy & Customize",
               description:
                 "Use the npm package for quick setup, or copy individual components into your project for full control.",
@@ -953,11 +1150,67 @@ export default function Home() {
         />
       </Section>
 
+      {/* ── Featured Components ── */}
+      <Section
+        title="Featured Components"
+        subtitle="A hand-picked selection of components and full-page demos."
+      >
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {featuredComponents.map((component) => (
+            <ComponentCard key={component.name} component={component} />
+          ))}
+        </div>
+        <div className="mt-8">
+          <Text variant="body" className="font-head text-xs tracking-widest text-muted-foreground uppercase mb-4">
+            Full-page Demos
+          </Text>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {featuredDemos.map((demo) => (
+              <ComponentCard key={demo.name} component={demo} />
+            ))}
+          </div>
+        </div>
+        <div className="mt-8 text-center">
+          <Button variant="outline" size="lg" asChild>
+            <a href="#primitives">View All {totalComponents}+ Components</a>
+          </Button>
+        </div>
+      </Section>
+
       {/* ── Component Catalog ── */}
       <SectionNav items={sectionNavItems} />
 
       <main className="mx-auto max-w-6xl px-4 py-12 flex flex-col gap-16 w-full">
-        {componentGroups.map((group) => (
+        {/* Search/filter */}
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search components..."
+            className="w-full border-2 border-border bg-card px-10 py-3 font-sans text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+          />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery("")}
+              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-muted transition-colors cursor-pointer"
+              aria-label="Clear search"
+            >
+              <X className="h-4 w-4 text-muted-foreground" />
+            </button>
+          )}
+        </div>
+
+        {!hasResults && (
+          <div className="text-center py-12">
+            <Text variant="body" className="text-muted-foreground">
+              No components found for &ldquo;{searchQuery}&rdquo;
+            </Text>
+          </div>
+        )}
+
+        {filteredGroups.map((group) => (
           <section key={group.id} id={group.id}>
             <Text variant="h3" className="mb-1">
               {group.title}{" "}
@@ -977,35 +1230,37 @@ export default function Home() {
           </section>
         ))}
 
-        <section id={demoGroup.id}>
-          <Text variant="h3" className="mb-1">
-            {demoGroup.title}{" "}
-            <span className="text-muted-foreground font-sans text-lg">
-              ({demoGroup.subGroups.reduce((s, sg) => s + sg.demos.length, 0)})
-            </span>
-          </Text>
-          <Text variant="small" className="mb-6">
-            {demoGroup.description}
-          </Text>
+        {filteredDemoGroup.subGroups.length > 0 && (
+          <section id={demoGroup.id}>
+            <Text variant="h3" className="mb-1">
+              {demoGroup.title}{" "}
+              <span className="text-muted-foreground font-sans text-lg">
+                ({filteredDemoGroup.subGroups.reduce((s, sg) => s + sg.demos.length, 0)})
+              </span>
+            </Text>
+            <Text variant="small" className="mb-6">
+              {demoGroup.description}
+            </Text>
 
-          <div className="flex flex-col gap-10">
-            {demoGroup.subGroups.map((subGroup) => (
-              <div key={subGroup.label}>
-                <Text
-                  variant="body"
-                  className="font-head text-xs tracking-widest text-muted-foreground uppercase mb-4"
-                >
-                  {subGroup.label}
-                </Text>
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {subGroup.demos.map((demo) => (
-                    <ComponentCard key={demo.name} component={demo} />
-                  ))}
+            <div className="flex flex-col gap-10">
+              {filteredDemoGroup.subGroups.map((subGroup) => (
+                <div key={subGroup.label}>
+                  <Text
+                    variant="body"
+                    className="font-head text-xs tracking-widest text-muted-foreground uppercase mb-4"
+                  >
+                    {subGroup.label}
+                  </Text>
+                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {subGroup.demos.map((demo) => (
+                      <ComponentCard key={demo.name} component={demo} />
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
+        )}
       </main>
 
       {/* ── CTA Banner ── */}
@@ -1017,15 +1272,15 @@ export default function Home() {
             <Button
               size="lg"
               variant="outline"
-              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+              className="border-primary-foreground text-primary-foreground bg-primary-foreground/10 hover:bg-primary-foreground hover:text-primary"
               asChild
             >
-              <a href="#quickstart">Get Started</a>
+              <a href="#quickstart">Install Now</a>
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+              className="border-primary-foreground/50 text-primary-foreground/80 hover:border-primary-foreground hover:text-primary-foreground"
               asChild
             >
               <a
