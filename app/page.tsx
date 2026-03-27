@@ -332,6 +332,13 @@ const groups: ComponentGroup[] = [
         href: "/demos/delete-account",
         status: "Ready",
       },
+      {
+        name: "Landing Page",
+        description:
+          "Full SaaS landing page with hero, features, pricing, testimonials, FAQ, and more.",
+        href: "/demos/landing",
+        status: "Ready",
+      },
     ],
   },
 ];
