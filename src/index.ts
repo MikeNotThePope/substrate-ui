@@ -91,6 +91,9 @@ export type {
 
 export { TwoColumnLayout } from "@/components/TwoColumnLayout/TwoColumnLayout";
 
+// Theme
+export { ThemeProvider, useTheme } from "@/components/ThemeProvider";
+
 // Landing page components
 export {
   Hero,

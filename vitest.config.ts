@@ -19,5 +19,19 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["./vitest.setup.ts"],
     include: ["components/**/*.test.{ts,tsx}"],
+    coverage: {
+      provider: "v8",
+      include: ["components/**/*.tsx"],
+      exclude: [
+        "components/**/*.test.tsx",
+        "components/**/*.stories.tsx",
+      ],
+      thresholds: {
+        statements: 70,
+        branches: 60,
+        functions: 70,
+        lines: 70,
+      },
+    },
   },
 });

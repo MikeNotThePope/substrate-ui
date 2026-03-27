@@ -88,6 +88,7 @@ export default function NavBarPage() {
             <NavBar
               brand={{ name: "Acme Co" }}
               links={isSignedIn ? signedInLinks : signedOutLinks}
+              linkComponent={Link}
               auth={
                 isSignedIn
                   ? {

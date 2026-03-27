@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import { AlignJustify, X, User, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
@@ -47,12 +46,14 @@ export interface NavBarProps {
   brand: NavBrand;
   links?: NavLink[];
   auth: NavAuth;
+  /** Element used for navigation links. Defaults to `"a"`. Pass `Link` from `next/link` (or your router's equivalent) for client-side transitions. */
+  linkComponent?: React.ElementType;
   className?: string;
 }
 
 // ─── Component ───
 
-export function NavBar({ brand, links = [], auth, className }: NavBarProps) {
+export function NavBar({ brand, links = [], auth, linkComponent: LinkComp = "a", className }: NavBarProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
@@ -65,24 +66,24 @@ export function NavBar({ brand, links = [], auth, className }: NavBarProps) {
       <div className="mx-auto max-w-6xl px-4">
         <div className="flex h-16 items-center justify-between">
           {/* ─── Brand ─── */}
-          <Link
+          <LinkComp
             href={brand.href ?? "/"}
             className="shrink-0 font-head text-2xl text-foreground"
           >
             {brand.name}
-          </Link>
+          </LinkComp>
 
           {/* ─── Desktop Links (hidden below lg) ─── */}
           {links.length > 0 && (
             <div className="hidden lg:flex items-center gap-6">
               {links.map((link) => (
-                <Link
+                <LinkComp
                   key={link.href}
                   href={link.href}
                   className="font-sans text-sm hover:underline decoration-primary underline-offset-4 transition-all"
                 >
                   {link.label}
-                </Link>
+                </LinkComp>
               ))}
             </div>
           )}
@@ -90,9 +91,9 @@ export function NavBar({ brand, links = [], auth, className }: NavBarProps) {
           {/* ─── Desktop Auth (hidden below lg) ─── */}
           <div className="hidden lg:flex items-center gap-3">
             {auth.state === "signed-out" ? (
-              <SignedOutActions auth={auth} />
+              <SignedOutActions auth={auth} linkComponent={LinkComp} />
             ) : (
-              <UserMenu auth={auth} />
+              <UserMenu auth={auth} linkComponent={LinkComp} />
             )}
           </div>
 
@@ -101,7 +102,7 @@ export function NavBar({ brand, links = [], auth, className }: NavBarProps) {
             {/* On tablet, show auth CTA inline */}
             {auth.state === "signed-out" && (
               <div className="hidden sm:flex items-center gap-2">
-                <SignedOutActions auth={auth} />
+                <SignedOutActions auth={auth} linkComponent={LinkComp} />
               </div>
             )}
 
@@ -135,23 +136,23 @@ export function NavBar({ brand, links = [], auth, className }: NavBarProps) {
 
           <div className="flex flex-col gap-1 px-4">
             {links.map((link) => (
-              <Link
+              <LinkComp
                 key={link.href}
                 href={link.href}
                 onClick={() => setDrawerOpen(false)}
                 className="font-sans text-base py-2 px-2 hover:bg-accent transition-colors"
               >
                 {link.label}
-              </Link>
+              </LinkComp>
             ))}
           </div>
 
           <Drawer.Footer>
             {auth.state === "signed-out" ? (
               <Button asChild>
-                <Link href={auth.href}>
+                <LinkComp href={auth.href}>
                   {auth.label ?? "Get Started"}
-                </Link>
+                </LinkComp>
               </Button>
             ) : (
               <div className="flex flex-col gap-1 border-t-2 pt-4">
@@ -169,14 +170,14 @@ export function NavBar({ brand, links = [], auth, className }: NavBarProps) {
                 </div>
                 {auth.menuItems.map((item) =>
                   item.href ? (
-                    <Link
+                    <LinkComp
                       key={item.label}
                       href={item.href}
                       onClick={() => setDrawerOpen(false)}
                       className="font-sans text-sm py-2 px-2 hover:bg-accent transition-colors"
                     >
                       {item.label}
-                    </Link>
+                    </LinkComp>
                   ) : (
                     <button
                       key={item.label}
@@ -203,20 +204,24 @@ export function NavBar({ brand, links = [], auth, className }: NavBarProps) {
 
 function SignedOutActions({
   auth,
+  linkComponent: LinkComp = "a",
 }: {
   auth: Extract<NavAuth, { state: "signed-out" }>;
+  linkComponent?: React.ElementType;
 }) {
   return (
     <Button asChild size="sm">
-      <Link href={auth.href}>{auth.label ?? "Get Started"}</Link>
+      <LinkComp href={auth.href}>{auth.label ?? "Get Started"}</LinkComp>
     </Button>
   );
 }
 
 function UserMenu({
   auth,
+  linkComponent: LinkComp = "a",
 }: {
   auth: Extract<NavAuth, { state: "signed-in" }>;
+  linkComponent?: React.ElementType;
 }) {
   return (
     <Menu>
@@ -238,7 +243,7 @@ function UserMenu({
         {auth.menuItems.map((item) =>
           item.href ? (
             <Menu.Item key={item.label} asChild>
-              <Link href={item.href}>{item.label}</Link>
+              <LinkComp href={item.href}>{item.label}</LinkComp>
             </Menu.Item>
           ) : (
             <Menu.Item key={item.label} onSelect={() => item.onClick?.()}>
