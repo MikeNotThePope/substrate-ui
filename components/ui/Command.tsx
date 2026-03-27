@@ -32,7 +32,9 @@ interface ICommandDialogProps
 }
 
 const CommandDialog = ({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   title = "Command Palette",
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   description = "Search for a command to run...",
   children,
   ...props

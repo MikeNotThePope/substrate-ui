@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import NextLink from "next/link";
-import { Button, Input, Alert, Loader, Link as UiLink, Text } from "@/components/ui";
+import { Button, Input, Alert, Loader, Text } from "@/components/ui";
 import { FormLayout } from "@/components/ui/FormLayout";
 
 export default function ResetPasswordPage() {

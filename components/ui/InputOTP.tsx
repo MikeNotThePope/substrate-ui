@@ -24,8 +24,7 @@ const InputOTPRoot = React.forwardRef<HTMLInputElement, IInputOTPProps>(
 );
 InputOTPRoot.displayName = "InputOTP";
 
-export interface IInputOTPGroupProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
+export type IInputOTPGroupProps = React.HTMLAttributes<HTMLDivElement>;
 
 const InputOTPGroup = React.forwardRef<HTMLDivElement, IInputOTPGroupProps>(
   ({ className, ...props }, ref) => (
@@ -71,8 +70,7 @@ const InputOTPSlot = React.forwardRef<HTMLDivElement, IInputOTPSlotProps>(
 );
 InputOTPSlot.displayName = "InputOTP.Slot";
 
-export interface IInputOTPSeparatorProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
+export type IInputOTPSeparatorProps = React.HTMLAttributes<HTMLDivElement>;
 
 const InputOTPSeparator = React.forwardRef<
   HTMLDivElement,

@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Resizable } from "./Resizable";
 
-const meta = {
+const meta: Meta = {
   title: "Primitives/Resizable",
   component: Resizable,
-} satisfies Meta<typeof Resizable>;
+};
 export default meta;
 
 type Story = StoryObj<typeof meta>;

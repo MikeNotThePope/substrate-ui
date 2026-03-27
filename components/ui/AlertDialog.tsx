@@ -36,8 +36,8 @@ AlertDialogOverlay.displayName = "AlertDialog.Overlay";
 
 /* ─── Content ─── */
 
-export interface IAlertDialogContentProps
-  extends React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Content> {}
+export type IAlertDialogContentProps =
+  React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Content>;
 
 const AlertDialogContent = React.forwardRef<
   React.ComponentRef<typeof AlertDialogPrimitive.Content>,

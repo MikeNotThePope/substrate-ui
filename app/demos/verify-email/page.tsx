@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import NextLink from "next/link";
-import { Button, Alert, Link as UiLink, Text } from "@/components/ui";
+import { Button, Alert, Link as UiLink } from "@/components/ui";
 
 type Status = "success" | "expired" | "invalid";
 

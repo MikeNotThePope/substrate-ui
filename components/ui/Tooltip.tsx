@@ -6,8 +6,8 @@ import { cn } from "@/lib/utils";
 
 /* --- Provider --- */
 
-interface ITooltipProviderProps
-  extends React.ComponentPropsWithoutRef<typeof TooltipPrimitives.Provider> {}
+type ITooltipProviderProps =
+  React.ComponentPropsWithoutRef<typeof TooltipPrimitives.Provider>;
 
 const TooltipProvider = ({
   delayDuration = 0,
@@ -37,8 +37,8 @@ TooltipTrigger.displayName = "Tooltip.Trigger";
 
 /* --- Content --- */
 
-interface ITooltipContentProps
-  extends React.ComponentPropsWithoutRef<typeof TooltipPrimitives.Content> {}
+type ITooltipContentProps =
+  React.ComponentPropsWithoutRef<typeof TooltipPrimitives.Content>;
 
 const TooltipContent = React.forwardRef<
   React.ComponentRef<typeof TooltipPrimitives.Content>,

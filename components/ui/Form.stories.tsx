@@ -4,10 +4,10 @@ import { Form } from "./Form";
 import { Input } from "./Input";
 import { Button } from "./Button";
 
-const meta = {
+const meta: Meta = {
   title: "Primitives/Form",
   component: Form,
-} satisfies Meta<typeof Form>;
+};
 export default meta;
 
 type Story = StoryObj<typeof meta>;

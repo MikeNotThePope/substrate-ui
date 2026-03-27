@@ -24,8 +24,8 @@ HoverCardTrigger.displayName = "HoverCard.Trigger";
 
 /* --- Content --- */
 
-interface IHoverCardContentProps
-  extends React.ComponentPropsWithoutRef<typeof HoverCardPrimitives.Content> {}
+type IHoverCardContentProps =
+  React.ComponentPropsWithoutRef<typeof HoverCardPrimitives.Content>;
 
 const HoverCardContent = React.forwardRef<
   React.ComponentRef<typeof HoverCardPrimitives.Content>,

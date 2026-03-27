@@ -42,7 +42,6 @@ function PropsTable() {
 
 export default function SliderPage() {
   const [volume, setVolume] = useState([50]);
-  const [range, setRange] = useState([25, 75]);
 
   return (
     <div className="min-h-screen">

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { HoverCard } from "@/components/ui/HoverCard";
-import { Button } from "@/components/ui/Button";
 
 function PropsTable() {
   const props = [

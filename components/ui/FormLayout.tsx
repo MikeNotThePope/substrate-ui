@@ -4,7 +4,7 @@ import { Label } from "./Label";
 
 /* ---------------------------------- Root ---------------------------------- */
 
-interface IFormLayoutProps extends React.FormHTMLAttributes<HTMLFormElement> {}
+type IFormLayoutProps = React.FormHTMLAttributes<HTMLFormElement>;
 
 const FormLayoutRoot = React.forwardRef<HTMLFormElement, IFormLayoutProps>(
   ({ className, ...props }, ref) => (
@@ -89,7 +89,7 @@ FormField.displayName = "FormLayout.Field";
 
 /* --------------------------------- Row ------------------------------------ */
 
-interface IFormRowProps extends React.HTMLAttributes<HTMLDivElement> {}
+type IFormRowProps = React.HTMLAttributes<HTMLDivElement>;
 
 const FormRow = React.forwardRef<HTMLDivElement, IFormRowProps>(
   ({ className, ...props }, ref) => (

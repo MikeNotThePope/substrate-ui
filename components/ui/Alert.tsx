@@ -39,7 +39,7 @@ const AlertRoot = React.forwardRef<HTMLDivElement, IAlertProps>(
 );
 AlertRoot.displayName = "Alert";
 
-interface IAlertTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {}
+type IAlertTitleProps = React.HTMLAttributes<HTMLHeadingElement>;
 
 const AlertTitle = React.forwardRef<HTMLHeadingElement, IAlertTitleProps>(
   ({ className, ...props }, ref) => (
@@ -52,8 +52,7 @@ const AlertTitle = React.forwardRef<HTMLHeadingElement, IAlertTitleProps>(
 );
 AlertTitle.displayName = "Alert.Title";
 
-interface IAlertDescriptionProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
+type IAlertDescriptionProps = React.HTMLAttributes<HTMLDivElement>;
 
 const AlertDescription = React.forwardRef<
   HTMLDivElement,

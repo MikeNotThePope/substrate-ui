@@ -241,8 +241,7 @@ SidebarRoot.displayName = "Sidebar";
 
 /* ─── Trigger ─── */
 
-interface ISidebarTriggerProps
-  extends React.ComponentPropsWithoutRef<typeof Button> {}
+type ISidebarTriggerProps = React.ComponentPropsWithoutRef<typeof Button>;
 
 const SidebarTrigger = React.forwardRef<
   HTMLButtonElement,
@@ -653,9 +652,9 @@ const SidebarMenuSkeleton = React.forwardRef<
   HTMLDivElement,
   ISidebarMenuSkeletonProps
 >(({ className, showIcon = false, ...props }, ref) => {
-  const width = React.useMemo(() => {
-    return `${Math.floor(Math.random() * 40) + 50}%`;
-  }, []);
+  const [width] = React.useState(
+    () => `${Math.floor(Math.random() * 40) + 50}%`,
+  );
 
   return (
     <div

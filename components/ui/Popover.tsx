@@ -24,8 +24,8 @@ PopoverTrigger.displayName = "Popover.Trigger";
 
 /* --- Content --- */
 
-interface IPopoverContentProps
-  extends React.ComponentPropsWithoutRef<typeof PopoverPrimitives.Content> {}
+type IPopoverContentProps =
+  React.ComponentPropsWithoutRef<typeof PopoverPrimitives.Content>;
 
 const PopoverContent = React.forwardRef<
   React.ComponentRef<typeof PopoverPrimitives.Content>,

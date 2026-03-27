@@ -14,11 +14,19 @@ import { cn } from "@/lib/utils";
 
 /* ─── PanelGroup ─── */
 
+interface ResizablePanelGroupProps extends GroupProps {
+  /** Alias for `orientation` – kept for backward compatibility. */
+  direction?: GroupProps["orientation"];
+}
+
 const ResizablePanelGroup = ({
   className,
+  direction,
+  orientation,
   ...props
-}: GroupProps) => (
+}: ResizablePanelGroupProps) => (
   <Group
+    orientation={orientation ?? direction}
     className={cn(
       "flex h-full w-full font-sans data-[panel-group-direction=vertical]:flex-col",
       className,

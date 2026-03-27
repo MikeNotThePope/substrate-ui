@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Bar, BarChart, Line, LineChart, XAxis, YAxis } from "recharts";
 import { Chart, type IChartConfig } from "./Chart";
 
-const meta = {
+const meta: Meta = {
   title: "Primitives/Chart",
   component: Chart.Container,
-} satisfies Meta<typeof Chart.Container>;
+};
 export default meta;
 
 type Story = StoryObj<typeof meta>;

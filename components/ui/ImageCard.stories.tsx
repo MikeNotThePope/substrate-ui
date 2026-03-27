@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ImageCard } from "./ImageCard";
 
-const meta = {
+const meta: Meta = {
   title: "Primitives/ImageCard",
   component: ImageCard,
   argTypes: {
@@ -9,7 +9,7 @@ const meta = {
     caption: { control: "text", description: "Caption text below the image" },
     alt: { control: "text", description: "Alt text for the image" },
   },
-} satisfies Meta<typeof ImageCard>;
+};
 export default meta;
 
 type Story = StoryObj<typeof meta>;

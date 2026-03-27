@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { AlignJustify, X, User, ChevronDown } from "lucide-react";
+import { AlignJustify, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Menu } from "@/components/ui/Menu";

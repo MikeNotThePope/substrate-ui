@@ -4,7 +4,7 @@ import * as React from "react";
 import { useTheme } from "@/components/ThemeProvider";
 import { Toaster as SonnerToaster, type ToasterProps } from "sonner";
 
-export interface ISonnerProps extends ToasterProps {}
+export type ISonnerProps = ToasterProps;
 
 const Toaster = React.forwardRef<HTMLDivElement, ISonnerProps>(
   ({ ...props }, _ref) => {

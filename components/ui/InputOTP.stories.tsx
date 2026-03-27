@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InputOTP } from "./InputOTP";
 
-const meta = {
+const meta: Meta = {
   title: "Primitives/InputOTP",
   component: InputOTP,
   argTypes: {
@@ -13,7 +13,7 @@ const meta = {
       control: "boolean",
     },
   },
-} satisfies Meta<typeof InputOTP>;
+};
 export default meta;
 
 type Story = StoryObj<typeof meta>;
