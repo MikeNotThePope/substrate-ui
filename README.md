@@ -192,11 +192,11 @@ When omitted, it defaults to a plain `<a>` tag.
 ## Development
 
 ```bash
-npm install          # Install dependencies
-npm run dev          # Start the demo app (Next.js)
-npm run storybook    # Start Storybook
-npm run test         # Run tests
-npm run build        # Build the library (tsup)
+bun install          # Install dependencies
+bun dev              # Start the demo app (Next.js)
+bun storybook        # Start Storybook
+bun test             # Run tests
+bun run build        # Build the library (tsup)
 ```
 
 ### Project Structure

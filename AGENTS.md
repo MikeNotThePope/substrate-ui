@@ -15,13 +15,15 @@ Substrate UI is a neobrutalist React component library built on Radix UI primiti
 
 ## Key Commands
 
+This project uses **Bun** as the package manager and script runner.
+
 ```
-npm run dev          # Next.js dev server
-npm run build        # Library build (tsup)
-npm run build:demo   # Demo site build (next build)
-npm run test         # Vitest
-npm run storybook    # Storybook dev
-npm run test:visual  # Playwright visual tests
+bun dev              # Next.js dev server
+bun run build        # Library build (tsup)
+bun run build:demo   # Demo site build (next build)
+bun test             # Vitest
+bun storybook        # Storybook dev
+bun run test:visual  # Playwright visual tests
 ```
 
 ## Conventions
