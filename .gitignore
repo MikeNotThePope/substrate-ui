@@ -44,3 +44,10 @@ next-env.d.ts
 # playwright
 test-results/
 playwright-report/
+
+# storybook
+storybook-static/
+debug-storybook.log
+
+# claude
+.claude/
