@@ -9,13 +9,13 @@ export const badgeVariants = cva(
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground",
-        success: "bg-emerald-400 text-black",
-        warning: "bg-amber-400 text-black",
+        success: "bg-success text-success-foreground",
+        warning: "bg-warning text-warning-foreground",
         destructive: "bg-destructive text-destructive-foreground",
         outline: "bg-transparent text-foreground",
       },
       size: {
-        sm: "px-1.5 py-0.5 text-[10px]",
+        sm: "px-1.5 py-0.5 text-xs",
         md: "px-2 py-0.5 text-xs",
       },
     },

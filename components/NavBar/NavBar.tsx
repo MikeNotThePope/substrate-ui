@@ -234,7 +234,7 @@ function UserMenu({
           <ChevronDown className="h-3 w-3" />
         </button>
       </Menu.Trigger>
-      <Menu.Content align="end" className="min-w-[160px]">
+      <Menu.Content align="end" className="min-w-40">
         {auth.menuItems.map((item) =>
           item.href ? (
             <Menu.Item key={item.label} asChild>

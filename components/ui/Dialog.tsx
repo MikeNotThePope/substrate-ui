@@ -17,7 +17,7 @@ const overlayVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-black/85",
+        default: "bg-overlay",
         none: "bg-transparent",
       },
     },

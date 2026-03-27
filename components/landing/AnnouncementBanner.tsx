@@ -35,7 +35,7 @@ export function AnnouncementBanner({
         {dismissible && (
           <button
             onClick={() => setVisible(false)}
-            className="shrink-0 p-0.5 hover:bg-black/10 transition-colors cursor-pointer"
+            className="shrink-0 p-0.5 hover:bg-foreground/10 transition-colors cursor-pointer"
             aria-label="Dismiss"
           >
             <X className="h-3.5 w-3.5" />

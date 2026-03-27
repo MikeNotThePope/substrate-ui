@@ -556,12 +556,12 @@ export default function Home() {
     <div className="min-h-screen">
       <header className="bg-primary text-primary-foreground border-b-2 border-border">
         <div className="mx-auto max-w-6xl px-4 py-16">
-          <Text variant="h1" className="mb-4 border-b-4 border-foreground inline-block pb-2">
+          <Text variant="h1" className="mb-4 border-b-2 border-foreground inline-block pb-2">
             Substrate UI
           </Text>
           <Text
             variant="body"
-            className="font-mono text-lg max-w-xl opacity-80"
+            className="font-mono text-lg max-w-xl text-muted-foreground"
           >
             A neobrutalist design system. {totalComponents} components that look
             right out of the box — no global CSS tricks, no surprises.

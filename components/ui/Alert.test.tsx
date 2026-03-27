@@ -21,7 +21,7 @@ describe("Alert", () => {
 
   it("applies status classes", () => {
     render(<Alert status="error">Oops</Alert>);
-    expect(screen.getByRole("alert")).toHaveClass("bg-red-300");
+    expect(screen.getByRole("alert")).toHaveClass("bg-error");
   });
 
   it("applies variant classes", () => {

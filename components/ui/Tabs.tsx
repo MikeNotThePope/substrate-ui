@@ -80,7 +80,7 @@ const TabsTrigger = React.forwardRef<
     className={cn(
       "font-head text-sm px-4 py-2 cursor-pointer transition-colors",
       "text-muted-foreground hover:text-foreground",
-      "border-b-2 border-transparent -mb-[2px]",
+      "border-b-2 border-transparent -mb-0.5",
       "data-[state=active]:text-foreground data-[state=active]:border-primary",
       "outline-hidden focus-visible:ring-2 focus-visible:ring-primary",
       className,
@@ -115,7 +115,7 @@ function TabsMore({ children, className, label = "More" }: TabsMoreProps) {
         className={cn(
           "font-head text-sm px-4 py-2 cursor-pointer transition-colors",
           "text-muted-foreground hover:text-foreground",
-          "border-b-2 border-transparent -mb-[2px]",
+          "border-b-2 border-transparent -mb-0.5",
           "outline-hidden focus-visible:ring-2 focus-visible:ring-primary",
           "flex items-center gap-1",
           className,

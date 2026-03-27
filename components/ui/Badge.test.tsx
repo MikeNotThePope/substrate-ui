@@ -15,7 +15,7 @@ describe("Badge", () => {
 
   it("applies size classes", () => {
     render(<Badge size="sm">Sm</Badge>);
-    expect(screen.getByText("Sm")).toHaveClass("text-[10px]");
+    expect(screen.getByText("Sm")).toHaveClass("text-xs");
   });
 
   it("merges custom className", () => {
