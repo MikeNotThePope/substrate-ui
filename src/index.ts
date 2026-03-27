@@ -32,6 +32,14 @@ export {
   dialogContentVariants,
   Divider,
   dividerVariants,
+  Stack,
+  stackVariants,
+  Flex,
+  flexVariants,
+  Grid,
+  gridVariants,
+  Container,
+  containerVariants,
 } from "@/components/ui";
 
 export type {
@@ -53,6 +61,10 @@ export type {
   ILoaderProps,
   IDialogContentProps,
   IDividerProps,
+  IStackProps,
+  IFlexProps,
+  IGridProps,
+  IContainerProps,
 } from "@/components/ui";
 
 // Composite components

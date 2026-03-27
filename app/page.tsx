@@ -175,6 +175,12 @@ const componentGroups: ComponentGroup[] = [
         status: "Ready",
       },
       {
+        name: "Container",
+        description: "Centered, max-width wrapper with responsive horizontal padding.",
+        href: "/components/container",
+        status: "Ready",
+      },
+      {
         name: "Dialog",
         description: "Modal dialog with header, body, footer, and overlay.",
         href: "/components/dialog",
@@ -194,10 +200,22 @@ const componentGroups: ComponentGroup[] = [
         status: "Ready",
       },
       {
+        name: "Flex",
+        description: "General-purpose flexbox container with direction, wrap, and gap.",
+        href: "/components/flex",
+        status: "Ready",
+      },
+      {
         name: "FormLayout",
         description:
           "Form shell with sections, field wrappers, inline rows, and action bar.",
         href: "/components/form-layout",
+        status: "Ready",
+      },
+      {
+        name: "Grid",
+        description: "CSS grid layout with configurable column count and gap.",
+        href: "/components/grid",
         status: "Ready",
       },
       {
@@ -216,6 +234,12 @@ const componentGroups: ComponentGroup[] = [
         name: "SimplePage",
         description: "Page shell with header, title, actions slot, and content area.",
         href: "/components/page",
+        status: "Ready",
+      },
+      {
+        name: "Stack",
+        description: "Vertical or horizontal flex layout with consistent spacing.",
+        href: "/components/stack",
         status: "Ready",
       },
       {
@@ -542,6 +566,14 @@ export default function Home() {
             A neobrutalist design system. {totalComponents} components that look
             right out of the box — no global CSS tricks, no surprises.
           </Text>
+          <div className="mt-6">
+            <NextLink
+              href="/tokens"
+              className="inline-block border-2 border-foreground bg-background text-foreground font-head text-sm px-4 py-2 shadow-sm hover:shadow-md transition-shadow"
+            >
+              Design Tokens Reference
+            </NextLink>
+          </div>
         </div>
       </header>
 
