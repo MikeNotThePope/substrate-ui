@@ -46,7 +46,7 @@ export function SectionNav({ items, className }: ISectionNavProps) {
   return (
     <nav
       className={cn(
-        "sticky top-0 z-10 bg-background border-b-2 border-border",
+        "sticky top-0 z-10 bg-background text-foreground border-b-[4px] border-black",
         className,
       )}
     >

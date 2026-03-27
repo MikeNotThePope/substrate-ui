@@ -91,6 +91,10 @@
   --color-error-foreground: var(--error-foreground);
   --color-overlay: var(--overlay);
   --color-border: var(--border);
+  --color-page: var(--page);
+  --color-page-foreground: var(--page-foreground);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -155,18 +159,20 @@
   /* ─── Color Tokens (Light Theme) ─── */
 
   :root {
+    --page: #DCEBFE;
+    --page-foreground: #000;
     --background: #fff;
     --foreground: #000;
     --card: #fff;
     --card-foreground: #000;
-    --primary: #ffdb33;
-    --primary-hover: #ffcc00;
+    --primary: #5294FF;
+    --primary-hover: #3D7FE6;
     --primary-foreground: #000;
-    --secondary: #000;
-    --secondary-foreground: #fff;
+    --secondary: #fff;
+    --secondary-foreground: #000;
     --muted: #d5d5d5;
-    --muted-foreground: #444;
-    --accent: #fae583;
+    --muted-foreground: #555;
+    --accent: #5294FF;
     --accent-foreground: #000;
     --destructive: #e63946;
     --destructive-foreground: #fff;
@@ -180,23 +186,28 @@
     --error-foreground: #000;
     --overlay: rgba(0, 0, 0, 0.85);
     --border: #000;
+    --ring: #000;
+    --input: #fff;
+    --grid-line: rgba(255, 255, 255, 0.5);
   }
 
   /* ─── Color Tokens (Dark Theme) ─── */
 
   .dark {
-    --background: #1a1a1a;
-    --foreground: #f5f5f5;
-    --card: #242424;
-    --card-foreground: #f5f5f5;
-    --primary: #ffdb33;
-    --primary-hover: #ffcc00;
+    --page: #20294B;
+    --page-foreground: #E6E6E6;
+    --background: #1F1F1F;
+    --foreground: #E6E6E6;
+    --card: #20294B;
+    --card-foreground: #E6E6E6;
+    --primary: #5294FF;
+    --primary-hover: #3D7FE6;
     --primary-foreground: #000;
-    --secondary: #3a3a3a;
-    --secondary-foreground: #f5f5f5;
-    --muted: #3f3f46;
-    --muted-foreground: #a0a0a0;
-    --accent: #fae583;
+    --secondary: #1F1F1F;
+    --secondary-foreground: #E6E6E6;
+    --muted: #1F1F1F;
+    --muted-foreground: #999;
+    --accent: #5294FF;
     --accent-foreground: #000;
     --destructive: #e63946;
     --destructive-foreground: #fff;
@@ -209,7 +220,10 @@
     --error: #f87171;
     --error-foreground: #7f1d1d;
     --overlay: rgba(0, 0, 0, 0.85);
-    --border: #5c5c5c;
+    --border: #000;
+    --ring: #fff;
+    --input: #1F1F1F;
+    --grid-line: rgba(255, 255, 255, 0.06);
   }
 
   /* ─── Optional: rounded corners ─── */
@@ -221,9 +235,19 @@
   /* ─── Base body styles ─── */
 
   body {
-    background: var(--background);
-    color: var(--foreground);
+    background-color: var(--page);
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 40px 40px;
+    color: var(--page-foreground);
     font-family: var(--font-sans), 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  /* ─── Scrollbar (dark mode) ─── */
+
+  .dark {
+    scrollbar-color: #E6E6E6 #1F1F1F;
   }
 
   /* ─── Reduced motion ─── */

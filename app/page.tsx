@@ -757,36 +757,27 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      <header className="bg-primary text-primary-foreground border-b-2 border-border">
-        <div className="mx-auto max-w-6xl px-4 py-16">
-          <div className="flex items-start justify-between">
-            <Text variant="h1" className="mb-4 border-b-2 border-foreground inline-block pb-2">
-              Substrate UI
-            </Text>
-            <ThemeToggle variant="outline" />
+      {/* ── Navigation Bar ── */}
+      <nav className="bg-background text-foreground border-b-[4px] border-black">
+        <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            {/* "N" Logo — blue square */}
+            <div className="w-8 h-8 bg-primary flex items-center justify-center border-2 border-black">
+              <span className="font-head text-primary-foreground text-sm">N</span>
+            </div>
+            <span className="font-head text-lg">Substrate UI</span>
           </div>
-          <Text
-            variant="body"
-            className="font-mono text-lg max-w-xl text-muted-foreground"
-          >
-            A neobrutalist design system. {totalComponents} components that look
-            right out of the box — no global CSS tricks, no surprises.
-          </Text>
-          <div className="mt-6 font-mono text-sm bg-background text-foreground border-2 border-foreground px-4 py-2 inline-block shadow-sm">
-            npm install @mikenotthepope/substrate-ui
-          </div>
-          <div className="mt-4 flex gap-3 flex-wrap">
-            <NextLink
-              href="/tokens"
-              className="inline-block border-2 border-foreground bg-background text-foreground font-head text-sm px-4 py-2 shadow-sm hover:shadow-md transition-shadow"
-            >
-              Design Tokens Reference
-            </NextLink>
+          <div className="flex items-center gap-3">
+            {/* Search button */}
+            <button className="bg-background text-foreground border-2 border-black px-3 py-1 font-head text-sm shadow-sm hover:shadow-none transition-shadow">
+              Search
+            </button>
+            {/* GitHub Stars Badge */}
             <a
               href="https://github.com/MikeNotThePope/substrate-ui"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border-2 border-foreground bg-background text-foreground font-head text-sm px-4 py-2 shadow-sm hover:shadow-md transition-shadow"
+              className="inline-flex items-center gap-2 bg-background text-foreground border-2 border-black px-3 py-1 font-head text-sm shadow-sm hover:shadow-none transition-shadow"
             >
               <svg
                 viewBox="0 0 16 16"
@@ -798,7 +789,30 @@ export default function Home() {
               </svg>
               GitHub
             </a>
+            <ThemeToggle variant="outline" />
           </div>
+        </div>
+      </nav>
+
+      {/* ── Page Heading ── */}
+      <header className="mx-auto max-w-6xl px-4 py-16">
+        <Text variant="h1" className="mb-4">
+          Substrate UI
+        </Text>
+        <Text variant="body" className="font-mono text-lg max-w-xl opacity-70">
+          A neobrutalist design system. {totalComponents} components that look
+          right out of the box — no global CSS tricks, no surprises.
+        </Text>
+        <div className="mt-6 font-mono text-sm bg-card text-card-foreground border-2 border-border px-4 py-2 inline-block shadow-sm">
+          npm install @mikenotthepope/substrate-ui
+        </div>
+        <div className="mt-4 flex gap-3 flex-wrap">
+          <NextLink
+            href="/tokens"
+            className="inline-block border-2 border-border bg-primary text-primary-foreground font-head text-sm px-4 py-2 shadow-md hover:shadow transition-shadow"
+          >
+            Design Tokens Reference
+          </NextLink>
         </div>
       </header>
 
