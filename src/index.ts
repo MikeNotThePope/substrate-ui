@@ -152,6 +152,8 @@ export { TwoColumnLayout } from "@/components/TwoColumnLayout/TwoColumnLayout";
 
 // Theme
 export { ThemeProvider, useTheme } from "@/components/ThemeProvider";
+export { ThemeToggle } from "@/components/ThemeToggle";
+export type { ThemeToggleProps } from "@/components/ThemeToggle";
 
 // Landing page components
 export {
