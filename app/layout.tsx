@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Archivo_Black, Space_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const sansFont = Space_Grotesk({
@@ -38,7 +39,10 @@ export default function RootLayout({
       lang="en"
       className={`${sansFont.variable} ${headFont.variable} ${monoFont.variable}`}
     >
-      <body className="min-h-screen">{children}</body>
+      <body className="min-h-screen">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
