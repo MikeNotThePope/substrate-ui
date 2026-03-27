@@ -25,7 +25,7 @@ const monoFont = Space_Mono({
 
 export const metadata: Metadata = {
   title: "Substrate UI",
-  description: "Design system built on Substrate UI",
+  description: "A neobrutalist component library for React",
 };
 
 export default function RootLayout({

@@ -1,28 +1,48 @@
-import Link from "next/link";
+import NextLink from "next/link";
+import { Card } from "@/components/ui/Card";
+import { Badge } from "@/components/ui/Badge";
+import { Text } from "@/components/ui/Text";
+import { SectionNav } from "@/components/SectionNav/SectionNav";
 
 interface ComponentEntry {
   name: string;
   description: string;
   href: string;
   status: "Ready" | "In Progress" | "Planned";
+  builtOn?: string;
+}
+
+interface DemoSubGroup {
+  label: string;
+  demos: ComponentEntry[];
 }
 
 interface ComponentGroup {
   title: string;
+  id: string;
   description: string;
   components: ComponentEntry[];
 }
 
-const groups: ComponentGroup[] = [
+interface DemoGroup {
+  title: string;
+  id: string;
+  description: string;
+  subGroups: DemoSubGroup[];
+}
+
+const componentGroups: ComponentGroup[] = [
   {
     title: "Primitives",
+    id: "primitives",
     description: "Small, composable building blocks.",
     components: [
       {
         name: "Avatar",
-        description: "User photo with fallback initials. Built on Radix Avatar.",
+        description: "User photo with fallback initials.",
         href: "/components/avatar",
         status: "Ready",
+        builtOn: "Radix Avatar",
       },
       {
         name: "Badge",
@@ -68,25 +88,29 @@ const groups: ComponentGroup[] = [
       },
       {
         name: "Menu",
-        description: "Dropdown menu for contextual actions. Built on Radix.",
+        description: "Dropdown menu for contextual actions.",
         href: "/components/menu",
         status: "Ready",
+        builtOn: "Radix",
       },
       {
         name: "Tabs",
-        description: "Tabbed interface with overflow dropdown. Built on Radix Tabs.",
+        description: "Tabbed interface with overflow dropdown.",
         href: "/components/tabs",
         status: "Ready",
+        builtOn: "Radix Tabs",
       },
     ],
   },
   {
     title: "Form",
+    id: "form",
     description: "Inputs, selects, and controls for collecting data.",
     components: [
       {
         name: "Alert",
-        description: "Contextual feedback with semantic status colors and composable title/description.",
+        description:
+          "Contextual feedback with semantic status colors and composable title/description.",
         href: "/components/alert",
         status: "Ready",
       },
@@ -104,38 +128,44 @@ const groups: ComponentGroup[] = [
       },
       {
         name: "Checkbox",
-        description: "Toggle a single option on or off. Built on Radix Checkbox.",
+        description: "Toggle a single option on or off.",
         href: "/components/checkbox",
         status: "Ready",
+        builtOn: "Radix Checkbox",
       },
       {
         name: "RadioGroup",
-        description: "Select one option from a set. Built on Radix Radio Group.",
+        description: "Select one option from a set.",
         href: "/components/radio-group",
         status: "Ready",
+        builtOn: "Radix Radio Group",
       },
       {
         name: "Select",
-        description: "Dropdown picker for choosing from a list. Built on Radix Select.",
+        description: "Dropdown picker for choosing from a list.",
         href: "/components/select",
         status: "Ready",
+        builtOn: "Radix Select",
       },
       {
         name: "Switch",
-        description: "Binary toggle for on/off settings. Built on Radix Switch.",
+        description: "Binary toggle for on/off settings.",
         href: "/components/switch",
         status: "Ready",
+        builtOn: "Radix Switch",
       },
       {
         name: "Slider",
-        description: "Range input for selecting numeric values. Built on Radix Slider.",
+        description: "Range input for selecting numeric values.",
         href: "/components/slider",
         status: "Ready",
+        builtOn: "Radix Slider",
       },
     ],
   },
   {
     title: "Layout",
+    id: "layout",
     description: "Page structure and responsive containers.",
     components: [
       {
@@ -146,9 +176,10 @@ const groups: ComponentGroup[] = [
       },
       {
         name: "Dialog",
-        description: "Modal dialog with header, body, footer, and overlay. Built on Radix Dialog.",
+        description: "Modal dialog with header, body, footer, and overlay.",
         href: "/components/dialog",
         status: "Ready",
+        builtOn: "Radix Dialog",
       },
       {
         name: "Divider",
@@ -164,7 +195,8 @@ const groups: ComponentGroup[] = [
       },
       {
         name: "FormLayout",
-        description: "Form shell with sections, field wrappers, inline rows, and action bar.",
+        description:
+          "Form shell with sections, field wrappers, inline rows, and action bar.",
         href: "/components/form-layout",
         status: "Ready",
       },
@@ -172,6 +204,12 @@ const groups: ComponentGroup[] = [
         name: "NavBar",
         description: "Responsive navigation with auth states and mobile drawer.",
         href: "/components/navbar",
+        status: "Ready",
+      },
+      {
+        name: "SectionNav",
+        description: "Sticky horizontal anchor navigation between page sections.",
+        href: "/components/section-nav",
         status: "Ready",
       },
       {
@@ -190,11 +228,13 @@ const groups: ComponentGroup[] = [
   },
   {
     title: "Landing",
+    id: "landing",
     description: "Sections and blocks for marketing and landing pages.",
     components: [
       {
         name: "AnnouncementBanner",
-        description: "Dismissible top-of-page banner for announcements and promotions.",
+        description:
+          "Dismissible top-of-page banner for announcements and promotions.",
         href: "/components/announcement-banner",
         status: "Ready",
       },
@@ -248,7 +288,8 @@ const groups: ComponentGroup[] = [
       },
       {
         name: "Section",
-        description: "Generic wrapper for landing page sections with consistent spacing.",
+        description:
+          "Generic wrapper for landing page sections with consistent spacing.",
         href: "/components/section",
         status: "Ready",
       },
@@ -266,215 +307,296 @@ const groups: ComponentGroup[] = [
       },
     ],
   },
-  {
-    title: "Demos",
-    description: "Full-page compositions showing components working together.",
-    components: [
-      {
-        name: "Unified Sign In",
-        description:
-          "Tabbed sign-in with password and magic link methods in one page.",
-        href: "/demos/unified-sign-in",
-        status: "Ready",
-      },
-      {
-        name: "Sign In",
-        description:
-          "Authentication page with form validation, social login, and loading states.",
-        href: "/demos/sign-in",
-        status: "Ready",
-      },
-      {
-        name: "Sign Up",
-        description:
-          "Registration flow with multi-field validation and success feedback.",
-        href: "/demos/sign-up",
-        status: "Ready",
-      },
-      {
-        name: "Check Email",
-        description:
-          "Waiting state after sign-up with resend action and guidance.",
-        href: "/demos/check-email",
-        status: "Ready",
-      },
-      {
-        name: "Verify Email",
-        description:
-          "Outcome page for email verification: success, expired, or invalid.",
-        href: "/demos/verify-email",
-        status: "Ready",
-      },
-      {
-        name: "Forgot Password",
-        description:
-          "Single-field form to request a password reset link.",
-        href: "/demos/forgot-password",
-        status: "Ready",
-      },
-      {
-        name: "Reset Password",
-        description:
-          "Set a new password with confirmation and validation.",
-        href: "/demos/reset-password",
-        status: "Ready",
-      },
-      {
-        name: "2FA Setup",
-        description:
-          "QR code scan, manual key entry, and recovery codes for two-factor auth.",
-        href: "/demos/2fa-setup",
-        status: "Ready",
-      },
-      {
-        name: "2FA Challenge",
-        description:
-          "TOTP code entry at login with method switching links.",
-        href: "/demos/2fa-challenge",
-        status: "Ready",
-      },
-      {
-        name: "2FA SMS",
-        description:
-          "SMS verification with masked phone, resend cooldown timer.",
-        href: "/demos/2fa-sms",
-        status: "Ready",
-      },
-      {
-        name: "2FA Recovery",
-        description:
-          "Recovery code entry as a fallback when authenticator is lost.",
-        href: "/demos/2fa-recovery",
-        status: "Ready",
-      },
-      {
-        name: "Magic Link",
-        description:
-          "Passwordless sign-in via email link with sent confirmation.",
-        href: "/demos/magic-link",
-        status: "Ready",
-      },
-      {
-        name: "Link Expired",
-        description:
-          "Dead-end page for expired or invalid links with recovery path.",
-        href: "/demos/link-expired",
-        status: "Ready",
-      },
-      {
-        name: "Rate Limited",
-        description:
-          "Too-many-attempts screen with live countdown timer.",
-        href: "/demos/rate-limited",
-        status: "Ready",
-      },
-      {
-        name: "Account Locked",
-        description:
-          "Security alert for locked accounts with reset and support options.",
-        href: "/demos/account-locked",
-        status: "Ready",
-      },
-      {
-        name: "Onboarding",
-        description:
-          "Profile setup with avatar, bio, role select, and notification prefs.",
-        href: "/demos/onboarding",
-        status: "Ready",
-      },
-      {
-        name: "Welcome",
-        description:
-          "Success/celebration screen after completing account setup.",
-        href: "/demos/welcome",
-        status: "Ready",
-      },
-      {
-        name: "Change Password",
-        description:
-          "Three-field password change from account settings.",
-        href: "/demos/change-password",
-        status: "Ready",
-      },
-      {
-        name: "Sessions",
-        description:
-          "Active device list with revoke confirmation dialogs.",
-        href: "/demos/sessions",
-        status: "Ready",
-      },
-      {
-        name: "Delete Account",
-        description:
-          "Destructive flow with type-to-confirm and final dialog.",
-        href: "/demos/delete-account",
-        status: "Ready",
-      },
-      {
-        name: "Landing Page",
-        description:
-          "Full SaaS landing page with hero, features, pricing, testimonials, FAQ, and more.",
-        href: "/demos/landing",
-        status: "Ready",
-      },
-    ],
-  },
 ];
 
-function StatusBadge({ status }: { status: "Ready" | "In Progress" | "Planned" }) {
-  const styles = {
-    Ready: "bg-primary text-primary-foreground",
-    "In Progress": "bg-accent text-accent-foreground",
-    Planned: "bg-muted text-muted-foreground",
-  };
+const demoGroup: DemoGroup = {
+  title: "Demos",
+  id: "demos",
+  description: "Full-page compositions showing components working together.",
+  subGroups: [
+    {
+      label: "Authentication",
+      demos: [
+        {
+          name: "Unified Sign In",
+          description:
+            "Tabbed sign-in with password and magic link methods in one page.",
+          href: "/demos/unified-sign-in",
+          status: "Ready",
+        },
+        {
+          name: "Sign In",
+          description:
+            "Authentication page with form validation, social login, and loading states.",
+          href: "/demos/sign-in",
+          status: "Ready",
+        },
+        {
+          name: "Sign Up",
+          description:
+            "Registration flow with multi-field validation and success feedback.",
+          href: "/demos/sign-up",
+          status: "Ready",
+        },
+        {
+          name: "Magic Link",
+          description:
+            "Passwordless sign-in via email link with sent confirmation.",
+          href: "/demos/magic-link",
+          status: "Ready",
+        },
+      ],
+    },
+    {
+      label: "Verification",
+      demos: [
+        {
+          name: "Check Email",
+          description:
+            "Waiting state after sign-up with resend action and guidance.",
+          href: "/demos/check-email",
+          status: "Ready",
+        },
+        {
+          name: "Verify Email",
+          description:
+            "Outcome page for email verification: success, expired, or invalid.",
+          href: "/demos/verify-email",
+          status: "Ready",
+        },
+        {
+          name: "Link Expired",
+          description:
+            "Dead-end page for expired or invalid links with recovery path.",
+          href: "/demos/link-expired",
+          status: "Ready",
+        },
+      ],
+    },
+    {
+      label: "Password",
+      demos: [
+        {
+          name: "Forgot Password",
+          description: "Single-field form to request a password reset link.",
+          href: "/demos/forgot-password",
+          status: "Ready",
+        },
+        {
+          name: "Reset Password",
+          description: "Set a new password with confirmation and validation.",
+          href: "/demos/reset-password",
+          status: "Ready",
+        },
+        {
+          name: "Change Password",
+          description: "Three-field password change from account settings.",
+          href: "/demos/change-password",
+          status: "Ready",
+        },
+      ],
+    },
+    {
+      label: "Two-Factor",
+      demos: [
+        {
+          name: "2FA Setup",
+          description:
+            "QR code scan, manual key entry, and recovery codes for two-factor auth.",
+          href: "/demos/2fa-setup",
+          status: "Ready",
+        },
+        {
+          name: "2FA Challenge",
+          description:
+            "TOTP code entry at login with method switching links.",
+          href: "/demos/2fa-challenge",
+          status: "Ready",
+        },
+        {
+          name: "2FA SMS",
+          description:
+            "SMS verification with masked phone, resend cooldown timer.",
+          href: "/demos/2fa-sms",
+          status: "Ready",
+        },
+        {
+          name: "2FA Recovery",
+          description:
+            "Recovery code entry as a fallback when authenticator is lost.",
+          href: "/demos/2fa-recovery",
+          status: "Ready",
+        },
+      ],
+    },
+    {
+      label: "Security",
+      demos: [
+        {
+          name: "Rate Limited",
+          description: "Too-many-attempts screen with live countdown timer.",
+          href: "/demos/rate-limited",
+          status: "Ready",
+        },
+        {
+          name: "Account Locked",
+          description:
+            "Security alert for locked accounts with reset and support options.",
+          href: "/demos/account-locked",
+          status: "Ready",
+        },
+      ],
+    },
+    {
+      label: "Lifecycle",
+      demos: [
+        {
+          name: "Onboarding",
+          description:
+            "Profile setup with avatar, bio, role select, and notification prefs.",
+          href: "/demos/onboarding",
+          status: "Ready",
+        },
+        {
+          name: "Welcome",
+          description:
+            "Success/celebration screen after completing account setup.",
+          href: "/demos/welcome",
+          status: "Ready",
+        },
+        {
+          name: "Sessions",
+          description: "Active device list with revoke confirmation dialogs.",
+          href: "/demos/sessions",
+          status: "Ready",
+        },
+        {
+          name: "Delete Account",
+          description:
+            "Destructive flow with type-to-confirm and final dialog.",
+          href: "/demos/delete-account",
+          status: "Ready",
+        },
+        {
+          name: "Landing Page",
+          description:
+            "Full SaaS landing page with hero, features, pricing, testimonials, FAQ, and more.",
+          href: "/demos/landing",
+          status: "Ready",
+        },
+      ],
+    },
+  ],
+};
 
+const sectionNavItems = [
+  ...componentGroups.map((g) => ({ label: g.title, id: g.id })),
+  { label: demoGroup.title, id: demoGroup.id },
+];
+
+function ComponentCard({ component }: { component: ComponentEntry }) {
   return (
-    <span className={`font-head text-xs px-2 py-0.5 border-2 ${styles[status]}`}>
-      {status}
-    </span>
+    <Card variant="interactive" asChild>
+      <NextLink href={component.href} className="block p-6">
+        <Text variant="h4" className="mb-2">
+          {component.name}
+        </Text>
+        <Text variant="small">{component.description}</Text>
+        {component.builtOn && (
+          <span className="font-mono text-xs text-muted-foreground mt-2 inline-block">
+            {component.builtOn}
+          </span>
+        )}
+        {component.status !== "Ready" && (
+          <Badge
+            variant={
+              component.status === "In Progress" ? "warning" : "outline"
+            }
+            size="sm"
+            className="mt-2"
+          >
+            {component.status}
+          </Badge>
+        )}
+      </NextLink>
+    </Card>
   );
 }
 
 export default function Home() {
+  const totalComponents =
+    componentGroups.reduce((sum, g) => sum + g.components.length, 0) +
+    demoGroup.subGroups.reduce((sum, sg) => sum + sg.demos.length, 0);
+
   return (
     <div className="min-h-screen">
-      <header className="border-b-2 bg-background">
+      <header className="bg-primary text-primary-foreground border-b-2 border-border">
         <div className="mx-auto max-w-6xl px-4 py-16">
-          <h1 className="font-head text-5xl mb-4">Substrate UI</h1>
-          <p className="font-sans text-lg text-muted-foreground max-w-xl">
-            A neobrutalist design system. Components that look right out of
-            the box — no global CSS tricks, no surprises.
-          </p>
+          <Text variant="h1" className="mb-4 border-b-4 border-foreground inline-block pb-2">
+            Substrate UI
+          </Text>
+          <Text
+            variant="body"
+            className="font-mono text-lg max-w-xl opacity-80"
+          >
+            A neobrutalist design system. {totalComponents} components that look
+            right out of the box — no global CSS tricks, no surprises.
+          </Text>
         </div>
       </header>
 
+      <SectionNav items={sectionNavItems} />
+
       <main className="mx-auto max-w-6xl px-4 py-12 flex flex-col gap-16">
-        {groups.map((group) => (
-          <section key={group.title}>
-            <h2 className="font-head text-2xl mb-1">{group.title}</h2>
-            <p className="font-sans text-sm text-muted-foreground mb-6">
+        {componentGroups.map((group) => (
+          <section key={group.id} id={group.id}>
+            <Text variant="h3" className="mb-1">
+              {group.title}{" "}
+              <span className="text-muted-foreground font-sans text-lg">
+                ({group.components.length})
+              </span>
+            </Text>
+            <Text variant="small" className="mb-6">
               {group.description}
-            </p>
+            </Text>
 
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {group.components.map((component) => (
-                <Link
-                  key={component.name}
-                  href={component.href}
-                  className="block border-2 p-6 shadow-md hover:shadow transition-all hover:translate-y-1 bg-card"
-                >
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="font-head text-xl">{component.name}</h3>
-                    <StatusBadge status={component.status} />
-                  </div>
-                  <p className="font-sans text-sm text-muted-foreground">
-                    {component.description}
-                  </p>
-                </Link>
+                <ComponentCard key={component.name} component={component} />
               ))}
             </div>
           </section>
         ))}
+
+        <section id={demoGroup.id}>
+          <Text variant="h3" className="mb-1">
+            {demoGroup.title}{" "}
+            <span className="text-muted-foreground font-sans text-lg">
+              ({demoGroup.subGroups.reduce((s, sg) => s + sg.demos.length, 0)})
+            </span>
+          </Text>
+          <Text variant="small" className="mb-6">
+            {demoGroup.description}
+          </Text>
+
+          <div className="flex flex-col gap-10">
+            {demoGroup.subGroups.map((subGroup) => (
+              <div key={subGroup.label}>
+                <Text
+                  variant="body"
+                  className="font-head text-xs tracking-widest text-muted-foreground uppercase mb-4"
+                >
+                  {subGroup.label}
+                </Text>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {subGroup.demos.map((demo) => (
+                    <ComponentCard key={demo.name} component={demo} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
     </div>
   );
