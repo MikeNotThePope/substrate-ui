@@ -2,6 +2,7 @@
 
 import NextLink from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { ColorThemeToggle } from "@/components/ColorThemeToggle";
 import { Drawer } from "@/components/ui/Drawer";
 import { AlignJustify, X } from "lucide-react";
 
@@ -52,6 +53,7 @@ export function SiteNav() {
             </svg>
             <span className="hidden sm:inline">GitHub</span>
           </a>
+          <ColorThemeToggle />
           <ThemeToggle variant="outline" />
 
           {/* Mobile menu button */}

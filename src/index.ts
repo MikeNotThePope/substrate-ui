@@ -154,8 +154,11 @@ export { TwoColumnLayout } from "@/components/TwoColumnLayout/TwoColumnLayout";
 
 // Theme
 export { ThemeProvider, useTheme } from "@/components/ThemeProvider";
+export type { ColorTheme } from "@/components/ThemeProvider";
 export { ThemeToggle } from "@/components/ThemeToggle";
 export type { ThemeToggleProps } from "@/components/ThemeToggle";
+export { ColorThemeToggle } from "@/components/ColorThemeToggle";
+export type { ColorThemeToggleProps } from "@/components/ColorThemeToggle";
 
 export { createTheme } from "@/lib/create-theme";
 export type { ThemeConfig } from "@/lib/create-theme";

@@ -450,6 +450,61 @@
     --grid-line: rgba(255, 255, 255, 0.06);
   }
 
+  /* ─── Color Theme: Plum (Light) ─── */
+
+  .theme-plum {
+    --page: #F0DCFE;
+    --page-foreground: #000;
+    --primary: #B254CF;
+    --primary-hover: #9A42B5;
+    --primary-foreground: #000;
+    --accent: #B254CF;
+    --accent-foreground: #000;
+    --info: #B254CF;
+    --info-foreground: #000;
+    --ring: #B254CF;
+
+    --primary-50:  #F8EDFC;
+    --primary-100: #F0D9F8;
+    --primary-200: #DFB0F0;
+    --primary-300: #CE87E8;
+    --primary-400: #B254CF;
+    --primary-500: #9A42B5;
+    --primary-600: #7D3596;
+    --primary-700: #602877;
+    --primary-800: #431C57;
+    --primary-900: #281038;
+
+    --info-50:  #F8EDFC;
+    --info-100: #F0D9F8;
+    --info-200: #DFB0F0;
+    --info-300: #CE87E8;
+    --info-400: #B254CF;
+    --info-500: #9A42B5;
+    --info-600: #7D3596;
+    --info-700: #602877;
+    --info-800: #431C57;
+    --info-900: #281038;
+  }
+
+  /* ─── Color Theme: Plum (Dark) ─── */
+
+  .dark.theme-plum,
+  .dark .theme-plum {
+    --page: #2E2045;
+    --page-foreground: #E6E6E6;
+    --card: #2E2045;
+    --card-foreground: #E6E6E6;
+    --primary: #B254CF;
+    --primary-hover: #9A42B5;
+    --primary-foreground: #000;
+    --accent: #B254CF;
+    --accent-foreground: #000;
+    --info: #B254CF;
+    --info-foreground: #000;
+    --ring: #fff;
+  }
+
   /* ─── Optional: rounded corners ─── */
 
   .with-radius {
