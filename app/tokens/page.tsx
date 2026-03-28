@@ -180,16 +180,16 @@ export default function TokensPage() {
           </div>
 
           <h3 className="font-head text-lg mb-4">Size Scale</h3>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 overflow-hidden">
             {typography.map((t) => (
-              <div key={t.token} className="flex items-baseline gap-4 border-b border-muted pb-3">
+              <div key={t.token} className="flex items-baseline gap-4 border-b border-muted pb-3 min-w-0">
                 <span className="font-mono text-xs text-muted-foreground w-28 shrink-0">
                   {t.token}
                 </span>
                 <span className="font-mono text-xs text-muted-foreground w-24 shrink-0">
                   {t.value} ({t.px})
                 </span>
-                <span className="font-sans" style={{ fontSize: t.value }}>
+                <span className="font-sans min-w-0 truncate" style={{ fontSize: t.value }}>
                   Substrate UI
                 </span>
               </div>
