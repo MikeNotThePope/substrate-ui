@@ -53,8 +53,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${sansFont.variable} ${headFont.variable} ${monoFont.variable}`}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var d=document.documentElement;var t=localStorage.getItem("substrateui-theme");var c=localStorage.getItem("substrateui-color-theme");var s=t==="dark"||(t!=="light"&&matchMedia("(prefers-color-scheme:dark)").matches);d.classList.add(s?"dark":"light");if(c&&c!=="blue")d.classList.add("theme-"+c)}catch(e){}})()`,
+          }}
+        />
+      </head>
       <body className="min-h-screen">
         <ThemeProvider>
           {children}

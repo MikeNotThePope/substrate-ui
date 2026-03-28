@@ -1,11 +1,15 @@
 "use client";
 
+import { useSyncExternalStore } from "react";
 import { useTheme, type ColorTheme } from "@/components/ThemeProvider";
 import { DropdownMenu } from "@/components/ui/DropdownMenu";
 import { IconButton } from "@/components/ui/IconButton";
-import { cn } from "@/lib/utils";
 import type { VariantProps } from "class-variance-authority";
 import type { iconButtonVariants } from "@/components/ui/IconButton";
+
+const subscribe = () => () => {};
+const getSnapshot = () => true;
+const getServerSnapshot = () => false;
 
 const COLOR_SWATCHES: Record<ColorTheme, string> = {
   blue: "#5294FF",
@@ -22,12 +26,13 @@ export interface ColorThemeToggleProps
     VariantProps<typeof iconButtonVariants> {}
 
 export function ColorThemeToggle({
-  variant = "outline",
+  variant = "ghost",
   size = "md",
   className,
   ...props
 }: ColorThemeToggleProps) {
   const { colorTheme, setColorTheme, colorThemes } = useTheme();
+  const mounted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   return (
     <DropdownMenu>
@@ -35,21 +40,21 @@ export function ColorThemeToggle({
         <IconButton
           variant={variant}
           size={size}
-          className={cn(className)}
-          aria-label="Change color theme"
+          className={className}
+          aria-label={mounted ? `Color theme: ${colorTheme}` : "Color theme"}
           {...props}
         >
           <span
             className="block w-4 h-4 border-2 border-border"
             style={{
-              backgroundColor: COLOR_SWATCHES[colorTheme],
+              backgroundColor: mounted ? COLOR_SWATCHES[colorTheme] : undefined,
               borderRadius: "var(--radius, 0)",
             }}
           />
         </IconButton>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content align="end">
-        <DropdownMenu.Label>Color theme</DropdownMenu.Label>
+        <DropdownMenu.Label>Color Theme</DropdownMenu.Label>
         <DropdownMenu.Separator />
         <DropdownMenu.RadioGroup
           value={colorTheme}

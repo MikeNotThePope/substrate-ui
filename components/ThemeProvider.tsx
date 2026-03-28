@@ -5,7 +5,8 @@ import { createContext, useContext, useEffect, useState, useCallback, useMemo } 
 type Theme = "light" | "dark" | "system";
 export type ColorTheme = "blue" | "plum";
 
-const COLOR_THEMES: ColorTheme[] = ["blue", "plum"];
+const VALID_THEMES: Theme[] = ["light", "dark", "system"];
+const COLOR_THEMES = ["blue", "plum"] as const;
 
 interface ThemeProviderState {
   theme: Theme;
@@ -24,6 +25,20 @@ const COLOR_STORAGE_KEY = "substrateui-color-theme";
 function getSystemTheme(): "light" | "dark" {
   if (typeof window === "undefined") return "light";
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+function readStoredTheme(key: string, fallback: Theme): Theme {
+  if (typeof window === "undefined") return fallback;
+  const stored = localStorage.getItem(key);
+  return VALID_THEMES.includes(stored as Theme) ? (stored as Theme) : fallback;
+}
+
+function readStoredColorTheme(key: string, fallback: ColorTheme): ColorTheme {
+  if (typeof window === "undefined") return fallback;
+  const stored = localStorage.getItem(key);
+  return (COLOR_THEMES as readonly string[]).includes(stored ?? "")
+    ? (stored as ColorTheme)
+    : fallback;
 }
 
 function applyClass(resolved: "light" | "dark") {
@@ -55,16 +70,14 @@ export function ThemeProvider({
   storageKey = STORAGE_KEY,
   colorStorageKey = COLOR_STORAGE_KEY,
 }: ThemeProviderProps) {
-  const [theme, setThemeState] = useState<Theme>(() => {
-    if (typeof window === "undefined") return defaultTheme;
-    return (localStorage.getItem(storageKey) as Theme) || defaultTheme;
-  });
-
-  const [colorTheme, setColorThemeState] = useState<ColorTheme>(() => {
-    if (typeof window === "undefined") return defaultColorTheme;
-    return (localStorage.getItem(colorStorageKey) as ColorTheme) || defaultColorTheme;
-  });
-
+  // Read localStorage in initializer — the blocking script in <head> ensures
+  // the DOM classes already match before React hydrates, so there is no mismatch.
+  const [theme, setThemeState] = useState<Theme>(() =>
+    readStoredTheme(storageKey, defaultTheme),
+  );
+  const [colorTheme, setColorThemeState] = useState<ColorTheme>(() =>
+    readStoredColorTheme(colorStorageKey, defaultColorTheme),
+  );
   const [systemTheme, setSystemTheme] = useState<"light" | "dark">(getSystemTheme);
 
   const resolvedTheme = theme === "system" ? systemTheme : theme;
@@ -88,6 +101,28 @@ export function ThemeProvider({
     mq.addEventListener("change", handler);
     return () => mq.removeEventListener("change", handler);
   }, []);
+
+  // Cross-tab synchronization via storage event
+  useEffect(() => {
+    const handler = (e: StorageEvent) => {
+      if (e.key === storageKey) {
+        setThemeState(
+          VALID_THEMES.includes(e.newValue as Theme)
+            ? (e.newValue as Theme)
+            : defaultTheme,
+        );
+      }
+      if (e.key === colorStorageKey) {
+        setColorThemeState(
+          (COLOR_THEMES as readonly string[]).includes(e.newValue ?? "")
+            ? (e.newValue as ColorTheme)
+            : defaultColorTheme,
+        );
+      }
+    };
+    window.addEventListener("storage", handler);
+    return () => window.removeEventListener("storage", handler);
+  }, [storageKey, colorStorageKey, defaultTheme, defaultColorTheme]);
 
   const setTheme = useCallback(
     (newTheme: Theme) => {
