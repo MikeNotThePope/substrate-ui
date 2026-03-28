@@ -19,10 +19,13 @@ export function AnnouncementBanner({
   dismissible = true,
   className,
 }: AnnouncementBannerProps) {
-  const [visible, setVisible] = React.useState(() => {
-    if (typeof window === "undefined") return true;
-    return sessionStorage.getItem("announcement-dismissed") !== "true";
-  });
+  const [visible, setVisible] = React.useState(true);
+
+  React.useEffect(() => {
+    if (sessionStorage.getItem("announcement-dismissed") === "true") {
+      setVisible(false);
+    }
+  }, []);
 
   const handleDismiss = () => {
     setVisible(false);
