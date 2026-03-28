@@ -120,7 +120,7 @@ const FormActions = React.forwardRef<HTMLDivElement, IFormActionsProps>(
     <div
       ref={ref}
       className={cn(
-        "flex items-center gap-3 border-t-2 border-border pt-6",
+        "flex items-center gap-3 border-t-2 border-border mt-6 pt-6",
         alignMap[align],
         className,
       )}

@@ -70,7 +70,7 @@ export default function FormLayoutPage() {
         <section>
           <h2 className="font-head text-2xl mb-4">Full Example</h2>
 
-          <div className="max-w-2xl border-2 p-6 bg-card shadow-md">
+          <div className="max-w-2xl border-2 p-8 bg-card shadow-md">
             <FormLayout onSubmit={(e) => e.preventDefault()}>
               <FormLayout.Section
                 title="Account"
@@ -153,8 +153,11 @@ export default function FormLayoutPage() {
                 </FormLayout.Field>
               </FormLayout.Section>
 
-              <FormLayout.Section title="Notifications">
-                <FormLayout.Field>
+              <FormLayout.Section
+                title="Preferences"
+                description="Manage your notifications and agreements."
+              >
+                <FormLayout.Field label="Notifications">
                   <div className="flex items-center gap-3">
                     <Switch id="marketing" />
                     <label htmlFor="marketing" className="font-sans text-sm">
@@ -163,7 +166,7 @@ export default function FormLayoutPage() {
                   </div>
                 </FormLayout.Field>
 
-                <FormLayout.Field>
+                <FormLayout.Field label="Legal">
                   <div className="flex items-center gap-2">
                     <Checkbox id="terms" />
                     <label htmlFor="terms" className="font-sans text-sm">
