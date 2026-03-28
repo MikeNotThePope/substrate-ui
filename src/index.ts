@@ -9,6 +9,7 @@ export {
   Menu,
   Drawer,
   Avatar,
+  avatarVariants,
   Tabs,
   Label,
   Input,
@@ -124,6 +125,7 @@ export type {
   IComboboxProps,
   IComboboxItem,
   IDataTableProps,
+  AvatarShape,
 } from "@/components/ui";
 
 // Composite components

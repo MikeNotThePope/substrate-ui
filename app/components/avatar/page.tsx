@@ -3,6 +3,7 @@ import { Avatar } from "@/components/ui";
 
 function PropsTable() {
   const props = [
+    { name: "shape", type: '"circle" | "square" | "rounded" | "hexagon" | "diamond" | "squircle" | "shield"', description: 'Avatar shape variant (default: "circle")' },
     { name: "className", type: "string", description: "Additional classes on the root element" },
     { name: "children", type: "ReactNode", description: "Avatar.Image and Avatar.Fallback sub-components" },
   ];
@@ -60,6 +61,8 @@ function PropsTable() {
   );
 }
 
+const shapes = ["circle", "square", "rounded", "hexagon", "diamond", "squircle", "shield"] as const;
+
 export default function AvatarPage() {
   return (
     <div className="min-h-screen">
@@ -114,6 +117,40 @@ export default function AvatarPage() {
           </div>
         </section>
 
+        {/* ─── Shapes ─── */}
+        <section>
+          <h2 className="font-head text-2xl mb-4">Shapes</h2>
+          <div className="flex flex-wrap gap-6 items-center">
+            {shapes.map((shape) => (
+              <div key={shape} className="flex flex-col items-center gap-2">
+                <Avatar shape={shape}>
+                  <Avatar.Fallback>{shape.slice(0, 2).toUpperCase()}</Avatar.Fallback>
+                </Avatar>
+                <span className="font-mono text-xs text-muted-foreground">{shape}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ─── Shapes with Images ─── */}
+        <section>
+          <h2 className="font-head text-2xl mb-4">Shapes with Images</h2>
+          <div className="flex flex-wrap gap-6 items-center">
+            {shapes.map((shape) => (
+              <div key={shape} className="flex flex-col items-center gap-2">
+                <Avatar shape={shape}>
+                  <Avatar.Image
+                    src={`https://i.pravatar.cc/80?u=shape-${shape}`}
+                    alt={shape}
+                  />
+                  <Avatar.Fallback>{shape.slice(0, 2).toUpperCase()}</Avatar.Fallback>
+                </Avatar>
+                <span className="font-mono text-xs text-muted-foreground">{shape}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* ─── Custom Sizes ─── */}
         <section>
           <h2 className="font-head text-2xl mb-4">Custom Sizes</h2>
@@ -139,7 +176,7 @@ export default function AvatarPage() {
         {/* ─── Usage ─── */}
         <section>
           <h2 className="font-head text-2xl mb-4">Usage</h2>
-          <div className="border-2 bg-secondary text-secondary-foreground p-6 font-mono text-sm whitespace-pre overflow-x-auto">{`<Avatar>
+          <div className="border-2 bg-secondary text-secondary-foreground p-6 font-mono text-sm whitespace-pre overflow-x-auto">{`<Avatar shape="hexagon">
   <Avatar.Image src="/photo.jpg" alt="Jane Doe" />
   <Avatar.Fallback>JD</Avatar.Fallback>
 </Avatar>`}</div>
