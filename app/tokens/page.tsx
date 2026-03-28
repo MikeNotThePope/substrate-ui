@@ -189,8 +189,8 @@ export default function TokensPage() {
                 <span className="font-mono text-xs text-muted-foreground w-24 shrink-0">
                   {t.value} ({t.px})
                 </span>
-                <span className="font-sans min-w-0 truncate" style={{ fontSize: t.value }}>
-                  Substrate UI
+                <span className="font-sans" style={{ fontSize: t.value }}>
+                  Aa
                 </span>
               </div>
             ))}
