@@ -859,7 +859,7 @@ export default function Home() {
       <AnnouncementBanner>
         Substrate UI is open source &mdash;{" "}
         <a
-          href="https://github.com/MikeNotThePope/substrate-ui"
+          href="https://github.com/MikeNotThePope/substrateui"
           target="_blank"
           rel="noopener noreferrer"
           className="underline font-head"
@@ -912,10 +912,10 @@ export default function Home() {
         <div className="mt-2 font-mono text-sm bg-card text-card-foreground border-2 border-border px-3 sm:px-6 py-3 shadow-md flex items-center gap-3">
           <code className="overflow-x-auto whitespace-nowrap flex-1">
             <span className="text-muted-foreground select-none">$ </span>
-            <span className="hidden sm:inline">npm install @mikenotthepope/substrate-ui</span>
-            <span className="sm:hidden">npm i @mikenotthepope/substrate-ui</span>
+            <span className="hidden sm:inline">npm install @mikenotthepope/substrateui</span>
+            <span className="sm:hidden">npm i @mikenotthepope/substrateui</span>
           </code>
-          <CopyButton text="npm install @mikenotthepope/substrate-ui" />
+          <CopyButton text="npm install @mikenotthepope/substrateui" />
         </div>
       </Hero>
 
@@ -941,7 +941,7 @@ export default function Home() {
             <h3 className="font-head text-lg mb-3">Add the dependency</h3>
             <div className="flex items-center gap-2 bg-background border-2 border-border px-3 py-2 min-w-0">
               <code className="font-mono text-sm overflow-x-auto whitespace-nowrap flex-1 min-w-0">
-                <span className="text-muted-foreground">{`"`}dependencies{`"`}: {`{`}</span> {`"`}@mikenotthepope/substrate-ui{`"`}: {`"`}latest{`"`} <span className="text-muted-foreground">{`}`}</span>
+                <span className="text-muted-foreground">{`"`}dependencies{`"`}: {`{`}</span> {`"`}@mikenotthepope/substrateui{`"`}: {`"`}latest{`"`} <span className="text-muted-foreground">{`}`}</span>
               </code>
             </div>
           </li>
@@ -950,9 +950,9 @@ export default function Home() {
             <h3 className="font-head text-lg mb-3">Import styles</h3>
             <div className="flex items-center gap-2 bg-background border-2 border-border px-3 py-2 min-w-0">
               <code className="font-mono text-sm overflow-x-auto whitespace-nowrap flex-1 min-w-0">
-                import &quot;@mikenotthepope/substrate-ui/styles&quot;
+                import &quot;@mikenotthepope/substrateui/styles&quot;
               </code>
-              <CopyButton text='import "@mikenotthepope/substrate-ui/styles"' />
+              <CopyButton text='import "@mikenotthepope/substrateui/styles"' />
             </div>
           </li>
           <li className="border-2 p-6 bg-card shadow-md overflow-hidden">
@@ -960,9 +960,9 @@ export default function Home() {
             <h3 className="font-head text-lg mb-3">Use components</h3>
             <div className="flex items-center gap-2 bg-background border-2 border-border px-3 py-2 min-w-0">
               <code className="font-mono text-sm overflow-x-auto whitespace-nowrap flex-1 min-w-0">
-                {`import { Button } from "@mikenotthepope/substrate-ui"`}
+                {`import { Button } from "@mikenotthepope/substrateui"`}
               </code>
-              <CopyButton text='import { Button } from "@mikenotthepope/substrate-ui"' />
+              <CopyButton text='import { Button } from "@mikenotthepope/substrateui"' />
             </div>
           </li>
         </ol>
@@ -1076,7 +1076,7 @@ export default function Home() {
               asChild
             >
               <a
-                href="https://github.com/MikeNotThePope/substrate-ui"
+                href="https://github.com/MikeNotThePope/substrateui"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -1116,19 +1116,19 @@ export default function Home() {
             links: [
               {
                 label: "GitHub",
-                href: "https://github.com/MikeNotThePope/substrate-ui",
+                href: "https://github.com/MikeNotThePope/substrateui",
               },
               {
                 label: "Issues",
-                href: "https://github.com/MikeNotThePope/substrate-ui/issues",
+                href: "https://github.com/MikeNotThePope/substrateui/issues",
               },
               {
                 label: "Contributing",
-                href: "https://github.com/MikeNotThePope/substrate-ui",
+                href: "https://github.com/MikeNotThePope/substrateui",
               },
               {
                 label: "MIT License",
-                href: "https://github.com/MikeNotThePope/substrate-ui/blob/main/LICENSE",
+                href: "https://github.com/MikeNotThePope/substrateui/blob/main/LICENSE",
               },
             ],
           },

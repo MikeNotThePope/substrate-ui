@@ -2,54 +2,42 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
 ## [0.1.0] - 2026-03-28
-
-Initial release of Substrate UI — a neobrutalist React component library built on Radix UI primitives and Tailwind CSS v4.
 
 ### Added
 
-#### Core Design System
-- Design tokens and component styles via CSS custom properties (`base/substrate.css`)
-- Semantic status tokens for consistent theming
-- Blue primary color scheme with pale-blue/navy page backgrounds
-- Neobrutalist defaults: hard shadows, bold borders, sharp corners with opt-in rounded via `with-radius`
-- Light/dark theme support with `ThemeProvider` and `ThemeToggle` component
+- **Core components**: Card, Badge, Button, Avatar, Drawer, Menu, Tabs, Alert, Dialog, Divider, IconButton, Link, Loader
+- **Form primitives**: Input, Textarea, Checkbox, RadioGroup, Select, Switch, Slider, FormLayout
+- **Layout components**: Page, SimplePage, TwoColumnLayout, CardGrid, SectionNav, Text
+- **Landing page components**: Full SaaS landing page demo with individual demo pages
+- **Auth demo pages**: Complete sign-in/sign-up workflow
+- **30 components** from neobrutalism-components with stories and demos
+- **ThemeToggle** component with hydration-safe light/dark switching
+- **Custom theme API** for consumer theming
+- **Design tokens**: CSS custom properties for colors, spacing, typography, motion, and responsive grid
+- **Semantic status tokens** and full color scales
+- **Design system foundations**: design principles, a11y audit, contribution guide
+- **Autodocs**, component status matrix, and contribution guidelines
+- **Unit tests** for 28+ components with coverage thresholds
+- **Visual regression tests** with Playwright
+- **Accessibility testing** suite
+- **Storybook 10** with co-located stories
+- **Library build** via tsup for npm publishing as `@mikenotthepope/substrateui`
+- **Demo site** with Next.js App Router
+- **Vercel Analytics** integration
+- **Pre-commit hooks** (opt-in) with lint, typecheck, and coverage enforcement
+- **MIT license**
 
-#### UI Components
-- **Layout**: `SimplePage`, `TwoColumnLayout`, `CardGrid`, `FormLayout`, `Tabs`, `SectionNav`, `Divider`
-- **Data Display**: `Card`, `Badge`, `Avatar`, `Text` (typography with font-mono theme token), `Alert`, `Table`
-- **Forms**: `Input`, `Textarea`, `Checkbox`, `RadioGroup`, `Select`, `Switch`, `Slider`
-- **Actions**: `Button`, `IconButton`, `Link`
-- **Overlays**: `Dialog`, `Drawer`, `ContextMenu`, `DropdownMenu`, `Menubar`
-- **Feedback**: `Loader`, `Toast`
-- 30 additional components ported from neobrutalism-components
+### Fixed
 
-#### Landing Page Components
-- Full set of SaaS landing page building blocks (hero, features, pricing, testimonials, etc.)
-- Individual demo pages for each landing component
+- Horizontal overflow in Size Scale section on tokens page
+- Mobile overflow in quickstart code blocks
+- Low-contrast colors and hardcoded color tokens
+- CI coverage scoping to ui components
 
-#### Demo Site
-- Next.js App Router demo/docs site with component catalog
-- Global search with keyboard shortcuts
-- Mobile-responsive navigation with sticky nav
-- Per-component demo pages with live examples
-- Auth workflow demo (sign-in/sign-up)
-- Full SaaS landing page demo
+### Changed
 
-#### Infrastructure
-- Library build with `tsup` for npm publishing as `@mikenotthepope/substrate-ui`
-- Vitest + Testing Library unit tests
-- Playwright visual regression tests
-- Storybook 10 with co-located stories
-- Opt-in pre-commit hooks (lint, typecheck, test coverage)
-- Vercel Analytics integration
-- MIT license
-
-#### Documentation
-- `AGENTS.md` and `CLAUDE.md` with project instructions for AI agents
-- Acknowledgements for neobrutalism-components and RetroUI
-
-[0.1.0]: https://github.com/MikeNotThePope/substrate-ui/releases/tag/v0.1.0
+- Rebranded color scheme to blue primary with pale-blue/navy page backgrounds
+- Renamed project from substrate-ui to substrateui
+- Moved source files from `src/` to project root
+- Switched docs to use Bun instead of npm

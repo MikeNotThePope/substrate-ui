@@ -1,16 +1,16 @@
 {
-  "name": "@mikenotthepope/substrate-ui",
+  "name": "@mikenotthepope/substrateui",
   "version": "0.1.0",
   "description": "A neobrutalist React component library with bold borders, hard shadows, and high contrast design.",
   "license": "MIT",
   "author": "mikenotthepope",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MikeNotThePope/substrate-ui.git"
+    "url": "git+https://github.com/MikeNotThePope/substrateui.git"
   },
-  "homepage": "https://github.com/MikeNotThePope/substrate-ui#readme",
+  "homepage": "https://www.substrateui.dev",
   "bugs": {
-    "url": "https://github.com/MikeNotThePope/substrate-ui/issues"
+    "url": "https://github.com/MikeNotThePope/substrateui/issues"
   },
   "keywords": [
     "react",

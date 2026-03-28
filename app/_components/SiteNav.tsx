@@ -36,7 +36,7 @@ export function SiteNav() {
             </NextLink>
           ))}
           <a
-            href="https://github.com/MikeNotThePope/substrate-ui"
+            href="https://github.com/MikeNotThePope/substrateui"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-background text-foreground border-2 border-border px-3 py-1 font-head text-sm shadow-sm hover:shadow-none transition-shadow"
@@ -91,7 +91,7 @@ export function SiteNav() {
                 ))}
                 <Drawer.Close asChild>
                   <a
-                    href="https://github.com/MikeNotThePope/substrate-ui"
+                    href="https://github.com/MikeNotThePope/substrateui"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-head text-base py-3 px-4 hover:bg-muted transition-colors"

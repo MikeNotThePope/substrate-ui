@@ -66,7 +66,7 @@ export default function AccordionPage() {
           <div className="border-2 p-6">
             <Accordion type="single" collapsible className="max-w-lg">
               <Accordion.Item value="item-1">
-                <Accordion.Trigger>What is substrate-ui?</Accordion.Trigger>
+                <Accordion.Trigger>What is substrateui?</Accordion.Trigger>
                 <Accordion.Content>
                   A neobrutalist design system built with Radix primitives, Tailwind CSS, and class-variance-authority. Sharp corners, bold borders, hard shadows.
                 </Accordion.Content>

@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "substrate-ui",
+      "name": "substrateui",
       "dependencies": {
         "@devnomic/marquee": "^1.0.3",
         "@hookform/resolvers": "^5.2.2",

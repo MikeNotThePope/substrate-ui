@@ -90,7 +90,7 @@ export default function TokensPage() {
           <h1 className="font-head text-4xl mb-2">Design Tokens</h1>
           <p className="font-sans text-lg text-muted-foreground max-w-xl">
             The full set of CSS custom properties that power Substrate UI.
-            Import once via <code className="font-mono bg-muted px-1">substrate-ui/styles</code>.
+            Import once via <code className="font-mono bg-muted px-1">substrateui/styles</code>.
           </p>
         </div>
       </header>

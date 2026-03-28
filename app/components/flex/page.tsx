@@ -126,7 +126,7 @@ export default function FlexPage() {
         {/* ─── Usage ─── */}
         <section>
           <h2 className="font-head text-2xl mb-4">Usage</h2>
-          <div className="border-2 bg-secondary text-secondary-foreground p-6 font-mono text-sm whitespace-pre overflow-x-auto">{`import { Flex } from "substrate-ui";
+          <div className="border-2 bg-secondary text-secondary-foreground p-6 font-mono text-sm whitespace-pre overflow-x-auto">{`import { Flex } from "substrateui";
 
 <Flex gap="lg" align="center" justify="between">
   <Logo />

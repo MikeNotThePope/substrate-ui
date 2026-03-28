@@ -5,7 +5,7 @@
  * This is the ONLY file consumers need to import for components to render correctly.
  *
  * Usage:
- *   import "substrate-ui/styles"
+ *   import "substrateui/styles"
  *
  * Token Reference:
  *   Colors ......... --background, --foreground, --primary, --secondary, --success, etc.

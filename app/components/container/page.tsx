@@ -98,7 +98,7 @@ export default function ContainerPage() {
         {/* ─── Usage ─── */}
         <section>
           <h2 className="font-head text-2xl mb-4">Usage</h2>
-          <div className="border-2 bg-secondary text-secondary-foreground p-6 font-mono text-sm whitespace-pre overflow-x-auto">{`import { Container } from "substrate-ui";
+          <div className="border-2 bg-secondary text-secondary-foreground p-6 font-mono text-sm whitespace-pre overflow-x-auto">{`import { Container } from "substrateui";
 
 <Container>
   <h1>Page content at max-w-6xl</h1>

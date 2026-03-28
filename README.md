@@ -6,7 +6,7 @@ A neobrutalist React component library with bold borders, hard shadows, and high
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-black.svg)](https://www.typescriptlang.org/)
 [![React 19](https://img.shields.io/badge/React-19-black.svg)](https://react.dev/)
 
-**[Documentation & Demos](https://www.substrate-ui.com)** | **[Storybook](https://www.substrate-ui.com)** | **[npm](https://www.npmjs.com/package/@mikenotthepope/substrate-ui)**
+**[Documentation & Demos](https://www.substrateui.dev)** | **[Storybook](https://www.substrateui.dev)** | **[npm](https://www.npmjs.com/package/@mikenotthepope/substrateui)**
 
 ---
 
@@ -26,7 +26,7 @@ Most component libraries optimize for invisibility — neutral colors, subtle sh
 ### Install
 
 ```bash
-npm install @mikenotthepope/substrate-ui
+npm install @mikenotthepope/substrateui
 ```
 
 Requires `react` and `react-dom` v19+ as peer dependencies.
@@ -37,13 +37,13 @@ Add the base stylesheet once in your app root. This provides all design tokens a
 
 ```tsx
 // app/layout.tsx (Next.js) or src/main.tsx (Vite)
-import "@mikenotthepope/substrate-ui/styles";
+import "@mikenotthepope/substrateui/styles";
 ```
 
 ### Use components
 
 ```tsx
-import { Button, Card, Text } from "@mikenotthepope/substrate-ui";
+import { Button, Card, Text } from "@mikenotthepope/substrateui";
 
 export function Example() {
   return (
@@ -110,7 +110,7 @@ If fonts aren't loaded, the library falls back to `Space Grotesk -> system-ui ->
 Use the built-in `ThemeProvider` to manage theme switching:
 
 ```tsx
-import { ThemeProvider } from "@mikenotthepope/substrate-ui";
+import { ThemeProvider } from "@mikenotthepope/substrateui";
 
 function App({ children }) {
   return (
@@ -124,7 +124,7 @@ function App({ children }) {
 Access and toggle the theme anywhere:
 
 ```tsx
-import { useTheme } from "@mikenotthepope/substrate-ui";
+import { useTheme } from "@mikenotthepope/substrateui";
 
 function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -182,7 +182,7 @@ The `NavBar` component accepts an optional `linkComponent` prop for framework-sp
 
 ```tsx
 import Link from "next/link";
-import { NavBar } from "@mikenotthepope/substrate-ui";
+import { NavBar } from "@mikenotthepope/substrateui";
 
 <NavBar linkComponent={Link} brand={{ name: "MyApp" }} auth={{ state: "signed-out", href: "/login" }} />
 ```
@@ -202,7 +202,7 @@ bun run build        # Build the library (tsup)
 ### Project Structure
 
 ```
-substrate-ui/
+substrateui/
 ├── src/index.ts          # Barrel export for the published package
 ├── components/ui/        # 57 primitive components
 ├── components/landing/   # 12 landing page components

@@ -14,7 +14,7 @@ export const Default: Story = {
   render: () => (
     <Accordion type="single" collapsible style={{ width: 420 }}>
       <Accordion.Item value="item-1">
-        <Accordion.Trigger>What is substrate-ui?</Accordion.Trigger>
+        <Accordion.Trigger>What is substrateui?</Accordion.Trigger>
         <Accordion.Content>
           A neobrutalist design system built with Radix primitives and Tailwind CSS.
         </Accordion.Content>

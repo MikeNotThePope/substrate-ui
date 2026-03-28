@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Substrate UI is a neobrutalist React component library built on Radix UI primitives and Tailwind CSS v4. It ships as an npm package (`@mikenotthepope/substrate-ui`) with a Next.js demo/docs site.
+Substrate UI is a neobrutalist React component library built on Radix UI primitives and Tailwind CSS v4. It ships as an npm package (`@mikenotthepope/substrateui`) with a Next.js demo/docs site.
 
 ## Architecture
 

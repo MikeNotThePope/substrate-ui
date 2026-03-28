@@ -12,7 +12,7 @@ interface ThemeProviderState {
 
 const ThemeContext = createContext<ThemeProviderState | undefined>(undefined);
 
-const STORAGE_KEY = "substrate-ui-theme";
+const STORAGE_KEY = "substrateui-theme";
 
 function getSystemTheme(): "light" | "dark" {
   if (typeof window === "undefined") return "light";
