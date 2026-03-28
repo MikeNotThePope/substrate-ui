@@ -442,7 +442,7 @@
     --info: #60a5fa;
     --info-foreground: #000;
     --error: #f87171;
-    --error-foreground: #7f1d1d;
+    --error-foreground: #000;
     --overlay: rgba(0, 0, 0, 0.85);
     --border: #000;
     --ring: #fff;
