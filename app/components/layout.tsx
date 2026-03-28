@@ -93,6 +93,7 @@ export default function ComponentsLayout({
         {/* Design Tokens link */}
         <div className="px-3 py-3 border-b-2 border-border">
           <SidebarLink href="/tokens">Design Tokens</SidebarLink>
+          <SidebarLink href="/design-principles">Design Principles</SidebarLink>
         </div>
 
         {/* Component groups */}

@@ -73,3 +73,18 @@ export const SingleColumn: Story = {
     </Grid>
   ),
 };
+
+export const Responsive: Story = {
+  render: () => (
+    <Grid columns={1} columnsSm={2} columnsMd={3} columnsLg={4} gap="md">
+      <Box>1</Box>
+      <Box>2</Box>
+      <Box>3</Box>
+      <Box>4</Box>
+      <Box>5</Box>
+      <Box>6</Box>
+      <Box>7</Box>
+      <Box>8</Box>
+    </Grid>
+  ),
+};

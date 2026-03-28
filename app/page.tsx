@@ -1099,6 +1099,7 @@ export default function Home() {
             links: [
               { label: "Install", href: "#quickstart" },
               { label: "Design Tokens", href: "/tokens" },
+              { label: "Design Principles", href: "/design-principles" },
               { label: "TypeScript Setup", href: "#quickstart" },
             ],
           },

@@ -5,6 +5,9 @@ function PropsTable() {
   const props = [
     { name: "columns", type: "1 | 2 | 3 | 4 | 5 | 6", default: "1", description: "Number of grid columns" },
     { name: "gap", type: '"none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"', default: '"md"', description: "Space between items" },
+    { name: "columnsSm", type: "1 | 2 | 3 | 4 | 5 | 6", default: "—", description: "Column count at sm breakpoint (640px+)" },
+    { name: "columnsMd", type: "1 | 2 | 3 | 4 | 5 | 6", default: "—", description: "Column count at md breakpoint (768px+)" },
+    { name: "columnsLg", type: "1 | 2 | 3 | 4 | 5 | 6", default: "—", description: "Column count at lg breakpoint (1024px+)" },
     { name: "as", type: "React.ElementType", default: '"div"', description: "Rendered HTML element" },
     { name: "className", type: "string", default: "—", description: "Additional classes on the root element" },
   ];
@@ -76,6 +79,27 @@ export default function GridPage() {
           </section>
         ))}
 
+        {/* ─── Responsive ─── */}
+        <section>
+          <h2 className="font-head text-2xl mb-4">Responsive Columns</h2>
+          <p className="font-sans text-sm text-muted-foreground mb-4">
+            Use <code className="font-mono bg-muted px-1">columnsSm</code>,{" "}
+            <code className="font-mono bg-muted px-1">columnsMd</code>, and{" "}
+            <code className="font-mono bg-muted px-1">columnsLg</code> to change column count at breakpoints.
+            The base <code className="font-mono bg-muted px-1">columns</code> prop sets the mobile-first default.
+          </p>
+          <div className="border-2 p-6">
+            <p className="font-mono text-xs text-muted-foreground mb-3">
+              columns=1 columnsSm=2 columnsMd=3 columnsLg=4
+            </p>
+            <Grid columns={1} columnsSm={2} columnsMd={3} columnsLg={4} gap="md">
+              {Array.from({ length: 8 }, (_, i) => (
+                <GridCell key={i}>{i + 1}</GridCell>
+              ))}
+            </Grid>
+          </div>
+        </section>
+
         {/* ─── Gap Sizes ─── */}
         <section>
           <h2 className="font-head text-2xl mb-4">Gap Sizes</h2>
@@ -112,9 +136,12 @@ export default function GridPage() {
   <Card>Feature 3</Card>
 </Grid>
 
-<Grid columns={2} gap="md">
-  <Sidebar />
-  <MainContent />
+{/* Responsive: 1 col on mobile, 2 on sm, 3 on md, 4 on lg */}
+<Grid columns={1} columnsSm={2} columnsMd={3} columnsLg={4} gap="md">
+  <Card>Item 1</Card>
+  <Card>Item 2</Card>
+  <Card>Item 3</Card>
+  <Card>Item 4</Card>
 </Grid>`}</div>
         </section>
       </main>

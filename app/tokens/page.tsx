@@ -60,6 +60,22 @@ const shadows = [
   { name: "2xl", tw: "shadow-2xl", offset: "16px 16px 0 1px" },
 ];
 
+const contrastPairings = [
+  { fg: "--foreground", fgHex: "#000", bg: "--background", bgHex: "#fff", ratio: "21.0:1", aaNormal: true, aaLarge: true, theme: "light" },
+  { fg: "--primary-foreground", fgHex: "#000", bg: "--primary", bgHex: "#5294FF", ratio: "6.4:1", aaNormal: true, aaLarge: true, theme: "light" },
+  { fg: "--primary", fgHex: "#5294FF", bg: "--background", bgHex: "#fff", ratio: "3.3:1", aaNormal: false, aaLarge: true, theme: "light", note: "Use as background with dark foreground, not as text on white" },
+  { fg: "--destructive-foreground", fgHex: "#fff", bg: "--destructive", bgHex: "#e63946", ratio: "4.0:1", aaNormal: false, aaLarge: true, theme: "light", note: "Passes for large/bold text only" },
+  { fg: "--muted-foreground", fgHex: "#555", bg: "--background", bgHex: "#fff", ratio: "7.5:1", aaNormal: true, aaLarge: true, theme: "light" },
+  { fg: "--success-foreground", fgHex: "#000", bg: "--success", bgHex: "#4ade80", ratio: "11.0:1", aaNormal: true, aaLarge: true, theme: "light" },
+  { fg: "--warning-foreground", fgHex: "#000", bg: "--warning", bgHex: "#fbbf24", ratio: "13.5:1", aaNormal: true, aaLarge: true, theme: "light" },
+  { fg: "--info-foreground", fgHex: "#000", bg: "--info", bgHex: "#60a5fa", ratio: "7.4:1", aaNormal: true, aaLarge: true, theme: "light" },
+  { fg: "--error-foreground", fgHex: "#000", bg: "--error", bgHex: "#f87171", ratio: "5.6:1", aaNormal: true, aaLarge: true, theme: "light" },
+  { fg: "--foreground", fgHex: "#E6E6E6", bg: "--background", bgHex: "#1F1F1F", ratio: "12.3:1", aaNormal: true, aaLarge: true, theme: "dark" },
+  { fg: "--primary-foreground", fgHex: "#000", bg: "--primary", bgHex: "#5294FF", ratio: "6.4:1", aaNormal: true, aaLarge: true, theme: "dark" },
+  { fg: "--muted-foreground", fgHex: "#999", bg: "--background", bgHex: "#1F1F1F", ratio: "3.4:1", aaNormal: false, aaLarge: true, theme: "dark", note: "Fails AA for normal text; suitable for large/decorative text only" },
+  { fg: "--card-foreground", fgHex: "#E6E6E6", bg: "--card", bgHex: "#20294B", ratio: "9.1:1", aaNormal: true, aaLarge: true, theme: "dark" },
+];
+
 export default function TokensPage() {
   return (
     <div className="min-h-screen">
@@ -254,6 +270,85 @@ export default function TokensPage() {
               <span className="font-mono text-xs">.with-radius (0.5rem)</span>
             </div>
           </div>
+        </section>
+
+        {/* ─── Color Contrast (WCAG AA) ─── */}
+        <section>
+          <h2 className="font-head text-2xl mb-2">Color Contrast (WCAG AA)</h2>
+          <p className="font-sans text-sm text-muted-foreground mb-6">
+            WCAG AA requires at least <strong>4.5:1</strong> contrast for normal text and{" "}
+            <strong>3:1</strong> for large text (18px+ or 14px bold). Pairings that fail AA
+            for normal text are flagged below.
+          </p>
+
+          {(["light", "dark"] as const).map((theme) => {
+            const pairs = contrastPairings.filter((p) => p.theme === theme);
+            return (
+              <div key={theme} className="mb-8">
+                <h3 className="font-head text-lg mb-3 capitalize">{theme} Theme</h3>
+                <div className="border-2 overflow-x-auto">
+                  <table className="w-full font-sans text-sm">
+                    <thead>
+                      <tr className="border-b-2 bg-muted">
+                        <th className="text-left p-3 font-head">Foreground</th>
+                        <th className="text-left p-3 font-head">Background</th>
+                        <th className="text-left p-3 font-head">Preview</th>
+                        <th className="text-left p-3 font-head">Ratio</th>
+                        <th className="text-left p-3 font-head">AA Normal</th>
+                        <th className="text-left p-3 font-head">AA Large</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {pairs.map((p, i) => (
+                        <tr key={i} className="border-b last:border-b-0">
+                          <td className="p-3">
+                            <div className="flex items-center gap-2">
+                              <div className="w-5 h-5 border border-border shrink-0" style={{ backgroundColor: p.fgHex }} />
+                              <span className="font-mono text-xs">{p.fg}</span>
+                            </div>
+                          </td>
+                          <td className="p-3">
+                            <div className="flex items-center gap-2">
+                              <div className="w-5 h-5 border border-border shrink-0" style={{ backgroundColor: p.bgHex }} />
+                              <span className="font-mono text-xs">{p.bg}</span>
+                            </div>
+                          </td>
+                          <td className="p-3">
+                            <span
+                              className="font-sans text-sm font-bold px-2 py-0.5 border border-border"
+                              style={{ color: p.fgHex, backgroundColor: p.bgHex }}
+                            >
+                              Aa
+                            </span>
+                          </td>
+                          <td className="p-3 font-mono text-xs">{p.ratio}</td>
+                          <td className="p-3">
+                            <span className={`inline-block px-2 py-0.5 border-2 font-head text-xs ${p.aaNormal ? "bg-success text-success-foreground border-border" : "bg-destructive text-destructive-foreground border-border"}`}>
+                              {p.aaNormal ? "Pass" : "Fail"}
+                            </span>
+                          </td>
+                          <td className="p-3">
+                            <span className={`inline-block px-2 py-0.5 border-2 font-head text-xs ${p.aaLarge ? "bg-success text-success-foreground border-border" : "bg-destructive text-destructive-foreground border-border"}`}>
+                              {p.aaLarge ? "Pass" : "Fail"}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                {pairs.some((p) => p.note) && (
+                  <div className="mt-3 flex flex-col gap-1">
+                    {pairs.filter((p) => p.note).map((p, i) => (
+                      <p key={i} className="font-sans text-xs text-muted-foreground">
+                        <span className="font-mono">{p.fg}</span> on <span className="font-mono">{p.bg}</span>: {p.note}
+                      </p>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </section>
       </main>
     </div>

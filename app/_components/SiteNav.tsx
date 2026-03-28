@@ -9,6 +9,7 @@ const navLinks = [
   { label: "Components", href: "#primitives" },
   { label: "Demos", href: "#demos" },
   { label: "Tokens", href: "/tokens" },
+  { label: "Principles", href: "/design-principles" },
 ];
 
 export function SiteNav() {
