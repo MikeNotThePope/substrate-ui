@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { axe } from "vitest-axe";
 import { describe, it, expect } from "vitest";
 import { Dialog } from "./Dialog";
 
@@ -64,5 +65,20 @@ describe("Dialog", () => {
     // It renders as an SVG element, find it within the dialog
     const dialog = screen.getByRole("dialog");
     expect(dialog).toBeInTheDocument();
+  });
+
+  it("has no accessibility violations", async () => {
+    const { container } = render(
+      <Dialog>
+        <Dialog.Trigger>Open</Dialog.Trigger>
+        <Dialog.Content>
+          <Dialog.Header>Dialog Title</Dialog.Header>
+          <Dialog.Body>Dialog body content</Dialog.Body>
+        </Dialog.Content>
+      </Dialog>,
+    );
+    await userEvent.click(screen.getByText("Open"));
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
 });

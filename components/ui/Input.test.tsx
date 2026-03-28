@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { axe } from "vitest-axe";
 import { describe, it, expect, vi } from "vitest";
 import { Input } from "./Input";
 
@@ -31,5 +32,11 @@ describe("Input", () => {
     render(<Input onChange={onChange} />);
     await userEvent.type(screen.getByRole("textbox"), "a");
     expect(onChange).toHaveBeenCalled();
+  });
+
+  it("has no accessibility violations", async () => {
+    const { container } = render(<Input aria-label="Name" />);
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
 });

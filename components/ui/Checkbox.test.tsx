@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { axe } from "vitest-axe";
 import { describe, it, expect, vi } from "vitest";
 import { Checkbox } from "./Checkbox";
 
@@ -46,5 +47,16 @@ describe("Checkbox", () => {
   it("merges custom className", () => {
     render(<Checkbox className="my-class" />);
     expect(screen.getByRole("checkbox")).toHaveClass("my-class");
+  });
+
+  it("has no accessibility violations", async () => {
+    const { container } = render(
+      <div>
+        <Checkbox id="terms" />
+        <label htmlFor="terms">Accept terms</label>
+      </div>,
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
 });

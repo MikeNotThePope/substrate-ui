@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { axe } from "vitest-axe";
 import { describe, it, expect } from "vitest";
 import { Tabs } from "./Tabs";
 
@@ -71,5 +72,20 @@ describe("Tabs", () => {
       </Tabs>,
     );
     expect(screen.getByRole("tablist")).toHaveClass("my-list");
+  });
+
+  it("has no accessibility violations", async () => {
+    const { container } = render(
+      <Tabs defaultValue="tab1">
+        <Tabs.List>
+          <Tabs.Trigger value="tab1">Tab 1</Tabs.Trigger>
+          <Tabs.Trigger value="tab2">Tab 2</Tabs.Trigger>
+        </Tabs.List>
+        <Tabs.Content value="tab1">Content 1</Tabs.Content>
+        <Tabs.Content value="tab2">Content 2</Tabs.Content>
+      </Tabs>,
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
 });

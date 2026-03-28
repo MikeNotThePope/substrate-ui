@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { axe } from "vitest-axe";
 import { describe, it, expect, vi } from "vitest";
 import { RadioGroup } from "./RadioGroup";
 
@@ -52,5 +53,22 @@ describe("RadioGroup", () => {
       </RadioGroup>,
     );
     expect(screen.getByRole("radio")).toHaveClass("my-item");
+  });
+
+  it("has no accessibility violations", async () => {
+    const { container } = render(
+      <RadioGroup aria-label="Favorite color">
+        <div>
+          <RadioGroup.Item value="red" id="red" />
+          <label htmlFor="red">Red</label>
+        </div>
+        <div>
+          <RadioGroup.Item value="blue" id="blue" />
+          <label htmlFor="blue">Blue</label>
+        </div>
+      </RadioGroup>,
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
 });

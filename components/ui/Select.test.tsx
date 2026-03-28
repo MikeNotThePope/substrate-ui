@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { axe } from "vitest-axe";
 import { describe, it, expect } from "vitest";
 import { Select } from "./Select";
 
@@ -59,5 +60,21 @@ describe("Select", () => {
     );
     // When a value is selected, it should be displayed in the trigger
     expect(screen.getByRole("combobox")).toHaveTextContent("Alpha");
+  });
+
+  it("has no accessibility violations", async () => {
+    const { container } = render(
+      <Select>
+        <Select.Trigger aria-label="Choose option">
+          <Select.Value placeholder="Pick one" />
+        </Select.Trigger>
+        <Select.Content>
+          <Select.Item value="a">Alpha</Select.Item>
+          <Select.Item value="b">Beta</Select.Item>
+        </Select.Content>
+      </Select>,
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
 });

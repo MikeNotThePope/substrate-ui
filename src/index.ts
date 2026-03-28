@@ -155,6 +155,9 @@ export { ThemeProvider, useTheme } from "@/components/ThemeProvider";
 export { ThemeToggle } from "@/components/ThemeToggle";
 export type { ThemeToggleProps } from "@/components/ThemeToggle";
 
+export { createTheme } from "@/lib/create-theme";
+export type { ThemeConfig } from "@/lib/create-theme";
+
 // Landing page components
 export {
   Hero,

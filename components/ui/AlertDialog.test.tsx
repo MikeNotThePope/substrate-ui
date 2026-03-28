@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { axe } from "vitest-axe";
 import { describe, it, expect } from "vitest";
 import { AlertDialog } from "./AlertDialog";
 
@@ -80,5 +81,26 @@ describe("AlertDialog", () => {
     await userEvent.click(screen.getByText("Delete"));
     expect(screen.getByText("Cancel")).toBeInTheDocument();
     expect(screen.getByText("Confirm")).toBeInTheDocument();
+  });
+
+  it("has no accessibility violations", async () => {
+    const { container } = render(
+      <AlertDialog>
+        <AlertDialog.Trigger>Delete</AlertDialog.Trigger>
+        <AlertDialog.Content>
+          <AlertDialog.Header>
+            <AlertDialog.Title>Are you sure?</AlertDialog.Title>
+            <AlertDialog.Description>This cannot be undone.</AlertDialog.Description>
+          </AlertDialog.Header>
+          <AlertDialog.Footer>
+            <AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
+            <AlertDialog.Action>Confirm</AlertDialog.Action>
+          </AlertDialog.Footer>
+        </AlertDialog.Content>
+      </AlertDialog>,
+    );
+    await userEvent.click(screen.getByText("Delete"));
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
 });

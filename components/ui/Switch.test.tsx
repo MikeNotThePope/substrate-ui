@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { axe } from "vitest-axe";
 import { describe, it, expect, vi } from "vitest";
 import { Switch } from "./Switch";
 
@@ -24,5 +25,16 @@ describe("Switch", () => {
   it("merges custom className", () => {
     render(<Switch className="my-switch" />);
     expect(screen.getByRole("switch")).toHaveClass("my-switch");
+  });
+
+  it("has no accessibility violations", async () => {
+    const { container } = render(
+      <div>
+        <Switch id="notifications" />
+        <label htmlFor="notifications">Enable notifications</label>
+      </div>,
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
 });

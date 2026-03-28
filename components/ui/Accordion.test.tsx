@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { axe } from "vitest-axe";
 import { describe, it, expect } from "vitest";
 import { Accordion } from "./Accordion";
 
@@ -68,5 +69,22 @@ describe("Accordion", () => {
     await userEvent.click(screen.getByText("Section Two"));
     expect(screen.getByText("Content two")).toBeInTheDocument();
     expect(screen.queryByText("Content one")).not.toBeInTheDocument();
+  });
+
+  it("has no accessibility violations", async () => {
+    const { container } = render(
+      <Accordion type="single" collapsible>
+        <Accordion.Item value="item-1">
+          <Accordion.Trigger>Section One</Accordion.Trigger>
+          <Accordion.Content>Content one</Accordion.Content>
+        </Accordion.Item>
+        <Accordion.Item value="item-2">
+          <Accordion.Trigger>Section Two</Accordion.Trigger>
+          <Accordion.Content>Content two</Accordion.Content>
+        </Accordion.Item>
+      </Accordion>,
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
 });
