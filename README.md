@@ -66,17 +66,17 @@ Substrate UI uses three font families via CSS custom properties:
 
 | Token          | Default Font    | Purpose    |
 | -------------- | --------------- | ---------- |
-| `--font-head`  | Archivo Black   | Headings   |
+| `--font-head`  | Bricolage Grotesque   | Headings   |
 | `--font-sans`  | Space Grotesk   | Body text  |
 | `--font-mono`  | Space Mono      | Code       |
 
 **Next.js:**
 
 ```tsx
-import { Space_Grotesk, Archivo_Black, Space_Mono } from "next/font/google";
+import { Space_Grotesk, Bricolage_Grotesque, Space_Mono } from "next/font/google";
 
 const sans = Space_Grotesk({ variable: "--font-sans", subsets: ["latin"], weight: "400" });
-const head = Archivo_Black({ variable: "--font-head", subsets: ["latin"], weight: "400" });
+const head = Bricolage_Grotesque({ variable: "--font-head", subsets: ["latin"], weight: ["400", "700", "800"] });
 const mono = Space_Mono({ variable: "--font-mono", subsets: ["latin"], weight: "400" });
 
 export default function RootLayout({ children }) {
@@ -91,10 +91,10 @@ export default function RootLayout({ children }) {
 **Plain HTML / Vite:**
 
 ```html
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=Space+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&family=Space+Grotesk:wght@400;500;700&family=Space+Mono&display=swap" rel="stylesheet">
 <style>
   :root {
-    --font-head: 'Archivo Black', sans-serif;
+    --font-head: 'Bricolage Grotesque', sans-serif;
     --font-sans: 'Space Grotesk', sans-serif;
     --font-mono: 'Space Mono', monospace;
   }

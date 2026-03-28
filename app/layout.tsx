@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Archivo_Black, Space_Mono } from "next/font/google";
+import { Space_Grotesk, Bricolage_Grotesque, Space_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/Sonner";
@@ -12,10 +12,10 @@ const sansFont = Space_Grotesk({
   display: "swap",
 });
 
-const headFont = Archivo_Black({
+const headFont = Bricolage_Grotesque({
   variable: "--font-head",
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "700", "800"],
   display: "swap",
 });
 

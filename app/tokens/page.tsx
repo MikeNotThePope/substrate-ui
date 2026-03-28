@@ -158,14 +158,14 @@ export default function TokensPage() {
         <section>
           <h2 className="font-head text-2xl mb-2">Typography</h2>
           <p className="font-sans text-sm text-muted-foreground mb-6">
-            Font size scale from xs to 6xl. Three font families: head (Archivo Black), sans (Space Grotesk), mono (Space Mono).
+            Font size scale from xs to 6xl. Three font families: head (Bricolage Grotesque), sans (Space Grotesk), mono (Space Mono).
           </p>
 
           <div className="mb-8">
             <h3 className="font-head text-lg mb-4">Font Families</h3>
             <div className="flex flex-col gap-4 border-2 p-6">
               <div>
-                <span className="font-mono text-xs text-muted-foreground block mb-1">--font-head (Archivo Black)</span>
+                <span className="font-mono text-xs text-muted-foreground block mb-1">--font-head (Bricolage Grotesque)</span>
                 <span className="font-head text-2xl">The quick brown fox jumps over the lazy dog</span>
               </div>
               <div>

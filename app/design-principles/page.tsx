@@ -206,7 +206,7 @@ export default function DesignPrinciplesPage() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-b"><td className="p-3 font-head">Archivo Black</td><td className="p-3 font-mono text-xs">--font-head</td><td className="p-3">Headings, labels, navigation</td></tr>
+                <tr className="border-b"><td className="p-3 font-head">Bricolage Grotesque</td><td className="p-3 font-mono text-xs">--font-head</td><td className="p-3">Headings, labels, navigation</td></tr>
                 <tr className="border-b"><td className="p-3" style={{ fontFamily: "var(--font-sans)" }}>Space Grotesk</td><td className="p-3 font-mono text-xs">--font-sans</td><td className="p-3">Body text, descriptions, UI copy</td></tr>
                 <tr><td className="p-3 font-mono">Space Mono</td><td className="p-3 font-mono text-xs">--font-mono</td><td className="p-3">Code, technical values, token names</td></tr>
               </tbody>
