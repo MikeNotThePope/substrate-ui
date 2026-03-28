@@ -16,6 +16,7 @@ function PropsTable() {
     { name: "value", type: "string", description: "Value for this item (required)" },
     { name: "variant", type: '"default" | "outline" | "solid"', description: "Visual style" },
     { name: "size", type: '"sm" | "md" | "lg"', description: "Radio size" },
+    { name: "shape", type: '"circle" | "diamond"', description: "Button shape (default: circle)" },
     { name: "disabled", type: "boolean", description: "Disable this item" },
   ];
 
@@ -186,6 +187,25 @@ export default function RadioGroupPage() {
               </RadioGroup>
             </div>
           </div>
+        </section>
+
+        {/* ─── Diamond Shape ─── */}
+        <section>
+          <h2 className="font-head text-2xl mb-4">Diamond Shape</h2>
+          <RadioGroup defaultValue="option-1">
+            <div className="flex items-center gap-2">
+              <RadioGroup.Item value="option-1" shape="diamond" id="rdia1" />
+              <Label htmlFor="rdia1">Option One</Label>
+            </div>
+            <div className="flex items-center gap-2">
+              <RadioGroup.Item value="option-2" shape="diamond" id="rdia2" />
+              <Label htmlFor="rdia2">Option Two</Label>
+            </div>
+            <div className="flex items-center gap-2">
+              <RadioGroup.Item value="option-3" shape="diamond" id="rdia3" />
+              <Label htmlFor="rdia3">Option Three</Label>
+            </div>
+          </RadioGroup>
         </section>
 
         {/* ─── Form Example ─── */}

@@ -59,6 +59,25 @@ export const SolidVariant: Story = {
   ),
 };
 
+export const Diamond: Story = {
+  render: () => (
+    <RadioGroup defaultValue="option-1">
+      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+        <RadioGroup.Item value="option-1" shape="diamond" id="rd1" />
+        <Label htmlFor="rd1">Option One</Label>
+      </div>
+      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+        <RadioGroup.Item value="option-2" shape="diamond" id="rd2" />
+        <Label htmlFor="rd2">Option Two</Label>
+      </div>
+      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+        <RadioGroup.Item value="option-3" shape="diamond" id="rd3" />
+        <Label htmlFor="rd3">Option Three</Label>
+      </div>
+    </RadioGroup>
+  ),
+};
+
 export const AllSizes: Story = {
   render: () => (
     <div style={{ display: "flex", gap: "2rem", alignItems: "flex-start" }}>
