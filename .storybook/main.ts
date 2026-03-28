@@ -11,6 +11,7 @@ const config: StorybookConfig = {
     "@storybook/addon-docs",
     "@storybook/addon-themes",
   ],
+  tags: ["autodocs"],
   framework: "@storybook/react-vite",
   viteFinal: (config) => {
     config.resolve = config.resolve || {};

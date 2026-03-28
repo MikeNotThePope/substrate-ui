@@ -8,7 +8,7 @@ cd substrate-ui
 bun install
 bun dev            # Next.js demo site
 bun storybook      # Component explorer
-bun test           # Unit tests (Vitest)
+bun run test       # Unit tests (Vitest)
 bun run build      # Library build (tsup)
 ```
 
@@ -116,10 +116,34 @@ export const AllVariants: Story = {
 
 Create `app/components/my-component/page.tsx` following the layout pattern used by existing pages (header with back link, sections, PropsTable, Usage code block).
 
-### 5. Verify
+### 5. Add a test file
+
+Create `components/ui/MyComponent.test.tsx`:
+
+```tsx
+import { render, screen } from "@testing-library/react";
+import { describe, it, expect } from "vitest";
+import { MyComponent } from "./MyComponent";
+
+describe("MyComponent", () => {
+  it("renders children", () => {
+    render(<MyComponent>Hello</MyComponent>);
+    expect(screen.getByText("Hello")).toBeInTheDocument();
+  });
+
+  it("merges custom className", () => {
+    render(<MyComponent className="my-class" data-testid="mc">Test</MyComponent>);
+    expect(screen.getByTestId("mc")).toHaveClass("my-class");
+  });
+});
+```
+
+Every new component **must** ship with a `.test.tsx` file. Aim for 3-5 tests covering: rendering, className merging, variants, and key interactions.
+
+### 6. Verify
 
 ```bash
-bun test           # No regressions
+bun run test       # No regressions
 bun run build      # Library compiles cleanly
 bun dev            # Check demo page renders
 ```
@@ -147,7 +171,7 @@ Tokens live in `base/substrate.css` inside `@layer substrate`.
 
 1. Branch from `main`
 2. Make your changes following the patterns above
-3. Run `bun test` and `bun run build` before pushing
+3. Run `bun run test` and `bun run build` before pushing
 4. Open a PR with a clear description of what changed and why
 5. If changing token values, flag it explicitly in the PR description
 
@@ -158,3 +182,13 @@ Tokens live in `base/substrate.css` inside `@layer substrate`.
 - Semantic tokens only — no raw hex values in components
 - Radix UI for interactive primitives — preserve accessibility props and forwarded refs
 - TypeScript strict mode — no `any` types
+
+## Component Status Labels
+
+Every component is tracked in `STATUS.md` with one of three labels:
+
+- **Stable** — Tests + stories + demo page + stable API. Safe for production use.
+- **Beta** — Functional with tests, but the API may change in future releases.
+- **Experimental** — New or minimal test coverage. Use with caution.
+
+When adding a new component, add it to `STATUS.md` with an initial status of **Beta**. Promote to **Stable** once it has full test coverage and the API is settled.
