@@ -21,7 +21,7 @@ This project uses **Bun** as the package manager and script runner.
 bun dev              # Next.js dev server
 bun run build        # Library build (tsup)
 bun run build:demo   # Demo site build (next build)
-bun test             # Vitest
+bun run test         # Vitest
 bun storybook        # Storybook dev
 bun run test:visual  # Playwright visual tests
 ```
