@@ -3,8 +3,8 @@
 ## Getting Started
 
 ```bash
-git clone https://github.com/MikeNotThePope/substrateui.git
-cd substrateui
+git clone https://github.com/MikeNotThePope/a8f3k2x9q7.git
+cd a8f3k2x9q7
 bun install
 bun dev            # Next.js demo site
 bun storybook      # Component explorer

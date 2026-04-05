@@ -14,11 +14,13 @@ const getServerSnapshot = () => false;
 const COLOR_SWATCHES: Record<ColorTheme, string> = {
   blue: "#5294FF",
   plum: "#B254CF",
+  "plum-trio": "#B254CF",
 };
 
 const COLOR_LABELS: Record<ColorTheme, string> = {
   blue: "Blue",
   plum: "Plum",
+  "plum-trio": "Plum Trio",
 };
 
 export interface ColorThemeToggleProps

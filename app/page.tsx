@@ -748,7 +748,7 @@ export default function Home() {
       <AnnouncementBanner>
         Substrate UI is open source &mdash;{" "}
         <a
-          href="https://github.com/MikeNotThePope/substrateui"
+          href="https://github.com/MikeNotThePope/a8f3k2x9q7"
           target="_blank"
           rel="noopener noreferrer"
           className="underline font-head"
@@ -939,7 +939,7 @@ export default function Home() {
               asChild
             >
               <a
-                href="https://github.com/MikeNotThePope/substrateui"
+                href="https://github.com/MikeNotThePope/a8f3k2x9q7"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -979,19 +979,19 @@ export default function Home() {
             links: [
               {
                 label: "GitHub",
-                href: "https://github.com/MikeNotThePope/substrateui",
+                href: "https://github.com/MikeNotThePope/a8f3k2x9q7",
               },
               {
                 label: "Issues",
-                href: "https://github.com/MikeNotThePope/substrateui/issues",
+                href: "https://github.com/MikeNotThePope/a8f3k2x9q7/issues",
               },
               {
                 label: "Contributing",
-                href: "https://github.com/MikeNotThePope/substrateui",
+                href: "https://github.com/MikeNotThePope/a8f3k2x9q7",
               },
               {
                 label: "MIT License",
-                href: "https://github.com/MikeNotThePope/substrateui/blob/main/LICENSE",
+                href: "https://github.com/MikeNotThePope/a8f3k2x9q7/blob/main/LICENSE",
               },
             ],
           },

@@ -6,7 +6,7 @@ A neobrutalist React component library with bold borders, hard shadows, and high
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-black.svg)](https://www.typescriptlang.org/)
 [![React 19](https://img.shields.io/badge/React-19-black.svg)](https://react.dev/)
 
-**[Documentation & Demos](https://www.substrateui.dev)** | **[Storybook](https://www.substrateui.dev)** | **[npm](https://www.npmjs.com/package/@mikenotthepope/substrateui)**
+**[Documentation & Demos](https://substrate-ui.vercel.app/)** | **[Storybook](https://substrate-ui.vercel.app/)** | **[npm](https://www.npmjs.com/package/@mikenotthepope/substrateui)**
 
 ---
 

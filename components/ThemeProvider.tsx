@@ -3,10 +3,10 @@
 import { createContext, useContext, useEffect, useState, useCallback, useMemo } from "react";
 
 type Theme = "light" | "dark" | "system";
-export type ColorTheme = "blue" | "plum";
+export type ColorTheme = "blue" | "plum" | "plum-trio";
 
 const VALID_THEMES: Theme[] = ["light", "dark", "system"];
-const COLOR_THEMES = ["blue", "plum"] as const;
+const COLOR_THEMES = ["blue", "plum", "plum-trio"] as const;
 
 interface ThemeProviderState {
   theme: Theme;
